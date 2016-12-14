@@ -15,3 +15,12 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+
+# Ignore SimpleCov files
+coverage
+
+# Ignore vcr cassettes
+/spec/vcr_cassettes
+
+# Ignore application configuration
+/config/application.yml

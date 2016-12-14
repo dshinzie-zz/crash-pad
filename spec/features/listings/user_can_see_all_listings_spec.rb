@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe 'As a logged-out user' do
   let!(:listings) { create_list(:listing, 2) }
+
   context 'when I click take a trip' do
     it "see all trips" do
       visit root_path

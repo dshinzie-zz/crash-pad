@@ -5,7 +5,7 @@ class CreateListings < ActiveRecord::Migration[5.0]
       t.text :description
       t.text :image_url
       t.float :latitude
-      t.float :longtitude
+      t.float :longitude
       t.float :price
       t.integer :accomodation
 

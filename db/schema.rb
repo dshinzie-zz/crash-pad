@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20161214214148) do
     t.text     "description"
     t.text     "image_url"
     t.float    "latitude"
-    t.float    "longtitude"
+    t.float    "longitude"
     t.float    "price"
     t.integer  "accomodation"
     t.datetime "created_at",   null: false

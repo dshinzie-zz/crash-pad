@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :listing do
-    user user
+    user
     description
     image_url "MyText"
     latitude 1.5

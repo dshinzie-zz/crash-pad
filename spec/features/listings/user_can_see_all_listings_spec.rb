@@ -1,0 +1,15 @@
+require 'rails_helper'
+
+describe 'As a logged-out user' do
+  let(:listings) { create_list(:listing, 2) }
+  context 'when I click take a trip' do
+    it "see all trips" do
+      visit root_path
+      click_on "Take a Trip"
+
+      expect(current_path).to eq(listings_path)
+      expect(page).to have_content(listing.first.description)
+      expect(page).to have_content(listing.second.description)
+    end
+  end
+end

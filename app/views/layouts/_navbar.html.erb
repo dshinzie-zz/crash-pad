@@ -1,0 +1,25 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="nav navbar-nav">
+      <a href="/" class="navbar-brand"><i class="glyphicon glyphicon-bed"></i> crash<span id="pad">PAD</span></a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <%= link_to "Take a Trip", listings_path %>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <i class="glyphicon glyphicon-user"></i>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a>Dashboard</a></li>
+          <li><a>Messagess <span class="badge">1</span></a></li>
+          <li><a>Profile</a></li>
+          <li class="divider"></li>
+          <li><a>Log out</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>

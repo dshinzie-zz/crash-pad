@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 # Use postgresql as the database for Active Record
@@ -26,7 +25,7 @@ gem 'faraday'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-
+gem 'bootstrap-sass'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -37,12 +36,16 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'shoulda-matchers'
-  gem 'database_cleaner'
   gem 'factory_girl_rails'
+  gem 'database_cleaner'
   gem 'simplecov', require: false
   gem 'vcr'
   gem 'webmock'
   gem 'selenium-webdriver'
+  gem 'pry'
+  gem 'rb-readline'
+  gem 'coolline'
+  gem 'faker'
 end
 
 group :development do

@@ -17,6 +17,7 @@
   color: #4990E2;
 }
 
+// Search Bars
 .no-border {
   border: 0;
   outline: 0px;
@@ -80,4 +81,14 @@ tr.top-row th,
 tr.bottom-row th {
   border-left: thin solid gray;
   border-right: thin solid gray;
+}
+
+.search-bar-div {
+  padding-top: 10%;
+  padding-bottom: 10%;
+}
+
+//Carousel
+.carousel-image {
+  height: 100px;
 }

@@ -7,6 +7,7 @@ require 'spec_helper'
 require 'rspec/rails'
 require 'capybara/rails'
 require 'vcr'
+require 'support/factory_girl'
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
@@ -19,7 +20,6 @@ VCR.configure do |config|
   config.cassette_library_dir = "spec/vcr_cassettes"
   config.hook_into :webmock
 end
-
 
 # Add additional requires below this line. Rails is not loaded until this point!
 

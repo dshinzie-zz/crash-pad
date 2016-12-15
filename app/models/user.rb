@@ -1,11 +1,9 @@
 require 'securerandom'
 
 class User < ActiveRecord::Base
-
+  has_many :listings
   has_secure_password
-
   before_create :set_api_key
-
   validates :email, presence: true, uniqueness: true
 
   private
@@ -18,5 +16,4 @@ class User < ActiveRecord::Base
   def generate_api_key
     SecureRandom.uuid.gsub(/\-/,'')
   end
-
 end

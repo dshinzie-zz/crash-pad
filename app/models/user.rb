@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_secure_password
   before_create :get_api_key
   validates :email, presence: true, uniqueness: true
+  validates_presence_of :first_name, :last_name, :phone
 
   private
 

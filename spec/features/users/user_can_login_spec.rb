@@ -15,7 +15,7 @@ describe "When a user goes to login page" do
     expect(page).to have_content("Chase")
   end
 
-  it "the user cannot login with their credentials" do
+  it "the user cannot login with wrong credentials" do
     user = User.create(email: "brad@test.com", password: "password", first_name: "Chase", last_name: "Dun", phone: "7273840")
 
     visit "/login"

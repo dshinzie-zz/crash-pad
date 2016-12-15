@@ -90,11 +90,25 @@ tr.bottom-row th {
 
 //Carousel
 
-.carousel-image {
-  max-height: 200px;
+.item {
+  &.beach{
+    background: image-url('beach.jpeg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  &.alpine{
+    background: image-url('alpine.jpeg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
   width: 100%;
-  // height: 200px;
-  // width: 100%;
-  // position: fixed;
-  // clip: rect(100px,0px,200px,0px);
+  height: 80vh;
+  p {
+    color: white;
+    font-size: 40px;
+    text-align: center;
+    line-height: 80vh;
+  }
 }

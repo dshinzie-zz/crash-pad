@@ -1,19 +1,14 @@
-require 'securerandom'
-
 class User < ActiveRecord::Base
+  include ApiKey
+
   has_many :listings
   has_secure_password
-  before_create :set_api_key
+  before_create :get_api_key
   validates :email, presence: true, uniqueness: true
 
   private
 
-  def set_api_key
-    return if api_key.present?
-    self.api_key = generate_api_key
-  end
-
-  def generate_api_key
-    SecureRandom.uuid.gsub(/\-/,'')
+  def get_api_key
+    self.api_key = ApiKey.generate
   end
 end

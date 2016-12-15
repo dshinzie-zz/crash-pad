@@ -11,7 +11,8 @@ describe "A not logged in user" do
     fill_in 'Phone Number', with: "999-999-9999"
 
     click_on "Create Account"
-
+    binding.pry
     expect(current_path).to eq(dashboard_path)
+
   end
 end

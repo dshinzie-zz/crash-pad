@@ -7,7 +7,6 @@ describe 'As a logged-out user' do
     it "see all trips" do
       visit root_path
       click_on "Take a Trip"
-      save_and_open_page
 
       expect(current_path).to eq(listings_path)
       expect(page).to have_content(listings.first.description)

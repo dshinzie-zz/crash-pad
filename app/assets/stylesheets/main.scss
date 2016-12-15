@@ -64,13 +64,15 @@
 }
 
 tr.top-row th {
-  border-top: thin solid black;
+  border-top: thin solid;
   padding: 1.5% 1.5% 0% 1.5%;
+  border-color: #979797;
 }
 
 tr.bottom-row th {
-  border-bottom: thin solid black;
+  border-bottom: thin solid;
   padding: 1% 1.5% 1% 1.5%;
+  border-color: #979797;
 
 }
 

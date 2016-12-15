@@ -1,18 +1,18 @@
 
-<div class="container center-block">
+<div class="container">
   <table class="search-table">
+    <col width="250">
     <col width="300">
-    <col width="400">
     <col width="200">
     <thead>
-      <tr class="search-header">
+      <tr class="search-header top-row">
         <th>Where</th>
         <th>When</th>
         <th>Guests</th>
       </tr>
     </thead>
     <tbody class="search-body">
-      <tr>
+      <tr class="bottom-row">
         <th >
            <input type="text" class="search-bar no-border" placeholder="Desintation">
         </th>
@@ -21,15 +21,18 @@
           <span><input type="text" id="checkout" class="no-border" placeholder="Check Out"></span>
         </th>
         <th>
-          <select id="guest-select" class="form-control no-border">
-            <option value="" disabled selected>Guests</option>
-            <option value="2">2</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-          </select>
+          <div class="div-inline">
+            <select id="guest-select" class="form-control no-border">
+              <option value="" disabled selected>Guests</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6+</option>
+            </select>
+          </div>
+          <button type="button" id="search-button" class="btn btn-info">Search</button>
         </th>
       </tr>
     </tbody>

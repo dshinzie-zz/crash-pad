@@ -25,18 +25,57 @@
 .search-table {
   margin: 0 auto;
   padding: 10%;
+  width: 100%
 }
 
 .search-header th {
   font-weight: normal;
-  font-size: 12px;
+  font-size: 16px;
 }
 
 .search-body input{
-  font-weight: normal;
-  font-size: 16px;
+  font-weight: lighter;;
+  font-size: 20px;
 }
 
 .table-border {
   border: 1px;
+}
+
+#guest-select {
+  width: 80px;
+}
+
+#search-button {
+  margin-left: 20%;
+
+}
+
+.div-inline {
+  display: inline-block;
+}
+
+#checkin, #checkout {
+  width: 100px;
+}
+
+#checkin {
+  margin-right: 20%;
+}
+
+tr.top-row th {
+  border-top: thin solid black;
+  padding: 1.5% 1.5% 0% 1.5%;
+}
+
+tr.bottom-row th {
+  border-bottom: thin solid black;
+  padding: 1% 1.5% 1% 1.5%;
+
+}
+
+tr.top-row th,
+tr.bottom-row th {
+  border-left: thin solid gray;
+  border-right: thin solid gray;
 }

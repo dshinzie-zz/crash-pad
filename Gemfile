@@ -43,6 +43,9 @@ group :development, :test do
   gem 'vcr'
   gem 'webmock'
   gem 'selenium-webdriver'
+  gem 'pry'
+  gem 'rb-readline'
+  gem 'coolline'
 end
 
 group :development do

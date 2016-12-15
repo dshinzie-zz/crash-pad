@@ -9,9 +9,9 @@ describe "A not logged in user" do
     fill_in 'First Name', with: "Johnny"
     fill_in 'Last Name', with: "Quest"
     fill_in 'Phone Number', with: "999-999-9999"
-    
+
     click_on "Create Account"
 
-    expect(current_path).to be(dashboard_path)
+    expect(current_path).to eq(dashboard_path)
   end
 end

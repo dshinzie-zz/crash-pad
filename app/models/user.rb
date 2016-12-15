@@ -1,8 +1,12 @@
 require 'securerandom'
 
-class User < ApplicationRecord
+class User < ActiveRecord::Base
+
+  has_secure_password
 
   before_create :set_api_key
+
+  validates :email, presence: true, uniqueness: true
 
   private
 

@@ -1,16 +1,33 @@
-<h1>Update Account</h1>
+<h2 class="account-header">Update Account</h2>
+<div class="form">
   <%= form_for @user do |f| %>
-    <%= f.label :email %>
-    <%= f.email_field :email, placeholder: "Email" %>
+    <div class="text-input">
+      <%= f.label :email %>
+      <%= f.text_field :email, placeholder: "Email" %>
+      <span class="separator"> </span>
+    </div>
 
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name, placeholder: "First Name" %>
+    <div class="text-input">
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name, placeholder: "First Name" %>
+      <span class="separator"> </span>
+    </div>
 
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name, placeholder: "Last Name" %>
+    <div class="text-input">
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name, placeholder: "Last Name" %>
+      <span class="separator"> </span>
+    </div>
 
-    <%= f.label :phone %>
-    <%= f.text_field :phone, placeholder: "Phone Number" %>
+    <div class="text-input">
+      <%= f.label :phone %>
+      <%= f.text_field :phone, placeholder: "Phone Number" %>
+      <span class="separator"> </span>
+    </div>
 
-    <%= f.submit "Update Account" %>
-  <% end %>
+    <div class="button-center">
+      <%= f.submit "Update Account", class: "update-btn" %>
+    </div>
+
+    <% end %>
+</div>

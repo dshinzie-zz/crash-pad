@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   include ApiKey
 
   has_many :listings
+  has_many :bookings
   has_secure_password
   before_create :get_api_key
   validates :email, presence: true, uniqueness: true

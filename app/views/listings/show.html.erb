@@ -3,4 +3,11 @@
   <p><%= @listing.description %></p>
   <p><%= number_to_currency(@listing.price, unit_price: "$") %></p>
   <p><%= @listing.accomodation %></p>
+
+  <% if current_user %>
+  <%= button_to "Request to Book", new_user_booking_path(current_user), method: :get, class: "btn btn-primary" %>
+  <% else %>
+  <%= button_to "Request to Book", method: :get, class: "btn btn-primary", disabled: true %>
+  <% end %>
+
 </section>

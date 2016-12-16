@@ -10,7 +10,7 @@ describe "A not logged in user" do
     fill_in 'Last Name', with: "Quest"
     fill_in 'Phone Number', with: "999-999-9999"
 
-    click_on "Create Account"
+    click_button "Create Account"
 
     expect(current_path).to eq(dashboard_path)
   end
@@ -23,7 +23,7 @@ describe "A not logged in user" do
     fill_in 'Last Name', with: "Quest"
     fill_in 'Phone Number', with: "999-999-9999"
 
-    click_on "Create Account"
+    click_button "Create Account"
 
     expect(current_path).to eq(new_user_path)
   end

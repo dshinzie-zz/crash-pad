@@ -26,7 +26,7 @@ def stub_login_user
   visit "/login"
   fill_in "Email", with: "brad@test.com"
   fill_in "Password", with: "password"
-  click_on "Login"
+  click_button "Login"
   user
 end
 

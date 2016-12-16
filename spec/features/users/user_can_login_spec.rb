@@ -9,7 +9,7 @@ describe "When a user goes to login page" do
     fill_in "Email", with: "brad@test.com"
     fill_in "Password", with: "password"
 
-    click_on "Login"
+    click_button "Login"
 
     expect(current_path).to eq(dashboard_path)
     expect(page).to have_content("Chase")
@@ -23,7 +23,7 @@ describe "When a user goes to login page" do
     fill_in "Email", with: "brad@test.com"
     fill_in "Password", with: "wrongpassword"
 
-    click_on "Login"
+    click_link "Login"
 
     expect(current_path).to eq("/login")
   end

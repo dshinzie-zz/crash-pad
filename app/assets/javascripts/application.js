@@ -14,3 +14,7 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require_tree .
+
+document.getElementById('submit').addEventListener('click', function(e) {
+  e.preventDefault();
+})

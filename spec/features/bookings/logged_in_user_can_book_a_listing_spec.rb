@@ -1,24 +1,30 @@
 require 'rails_helper'
 
 describe 'As a logged in user' do
+  let!(:listings) { create_list(:listing, 2) }
+  let(:user) { create(:user) }
+
   context 'when I book a listing' do
     it "shows me a confirmation message" do
-      let!(:listings) { create_list(:listing, 2) }
-      let(:user) { create(:user) }
 
+      booking = Booking.new(start_date: "01/02/2017", end_date: "01/03/2017", credit_card_number: "1234432112344321")
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
       visit listings_path
       within(".listing-#{listings.first.id}") do
         click_on "Checkout listing"
       end
-      fill_in '#listing-check-in', with: "01/02/2017"
-      fill_in '#listing-check-out', with: "01/03/2017"
-      select "2", from: '#listing-guest-select'
+
       click_on "Request to Book"
 
-      expect(current_path).to eq(booking_path)
-      expect(page).to have_content("Booking Information")
+      fill_in 'booking_start_date', with: booking.start_date
+      fill_in 'booking_end_date', with: booking.end_date
+      fill_in 'booking_credit_card_number', with: booking.credit_card_number
+      click_on "Submit Request"
+
+      expect(current_path).to eq(user_booking_path(user, Booking.first))
+      expect(page).to have_content(booking.start_date)
+      expect(page).to have_content(booking.end_date)
     end
   end
 end

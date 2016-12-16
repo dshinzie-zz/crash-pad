@@ -22,11 +22,12 @@ VCR.configure do |config|
 end
 
 def stub_login_user
-  user = User.create(email: "brad@test.com", password: "password", first_name: "Chase", last_name: "Dun", phone: "7273840")
+  user = User.create(email: "brad@test.com", password: "password", first_name: "Chase", last_name: "Dun", phone: "7273840", avatar_url: "http://www.aceshowbiz.com/images/photo/drake.jpg")
   visit "/login"
   fill_in "Email", with: "brad@test.com"
   fill_in "Password", with: "password"
-  click_on "Login"
+  click_button "Login"
+  user
 end
 
 # Add additional requires below this line. Rails is not loaded until this point!

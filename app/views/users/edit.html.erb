@@ -1,0 +1,16 @@
+<h1>Update Account</h1>
+  <%= form_for @user do |f| %>
+    <%= f.label :email %>
+    <%= f.email_field :email, placeholder: "Email" %>
+
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name, placeholder: "First Name" %>
+
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name, placeholder: "Last Name" %>
+
+    <%= f.label :phone %>
+    <%= f.text_field :phone, placeholder: "Phone Number" %>
+
+    <%= f.submit "Update Account" %>
+  <% end %>

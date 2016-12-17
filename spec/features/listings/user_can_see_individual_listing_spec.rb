@@ -21,14 +21,13 @@ describe 'As a logged-out user' do
 end
 
 describe 'As a logged-in' do
-  let!(:listings) { create_list(:listing, 2) }
-  let(:user) { create(:user) }
-
   context 'when I click take a trip' do
     it "see all trips" do
-      visit listings_path
+      listings = create_list(:listing, 2)
 
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+      stub_login_user
+
+      visit listings_path
 
       expect(current_path).to eq(listings_path)
       expect(page).to have_content(listings.first.description)

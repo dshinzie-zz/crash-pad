@@ -7,8 +7,6 @@ RSpec.describe User, type: :model do
   it {should have_many(:bookings) }
   it { should have_many(:reviews) }
 
-
-
   context "no email address is provided" do
     it "user account is not created" do
       invalid_user = User.new(password: "pass", first_name: "chase", last_name: "dun", phone: "7273840")

@@ -52,7 +52,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:success] = "Account successfully updated!"
-      redirect_to dashboard_path
+      redirect_to dashboard_path(current_user)
     else
       # flash[:warning] = "Not valid information"
       redirect_to edit_user_path(@user)

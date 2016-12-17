@@ -6,4 +6,16 @@ class Listing < ApplicationRecord
 
   attr_accessor :address
 
+  def self.search(argument)
+    if argument
+      where(city: argument)
+    else
+      Listing.all
+    end
+  end
+
+  def concat_address
+    "#{city}"
+  end
+
 end

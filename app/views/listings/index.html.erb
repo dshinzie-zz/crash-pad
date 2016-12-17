@@ -1,10 +1,15 @@
 <section class="container listing-container">
-  <% @listings.each do |listing| %>
-  <article class="col-md-4 listing-<%=listing.id%>">
-    <div><%= image_tag (listing.image_url), class: "listing-image" %></div>
-    <div><%= listing.description %></div>
-    <div><%= number_to_currency(listing.price, unit_price: "$") %></div>
-    <div><%= link_to "Checkout listing", listing_path(listing) %></div>
-  </article>
+  <% if @listings.empty? %>
+    <%= render partial: "no_listings" %>
+  <% else %>
+    <% @listings.each do |listing| %>
+    <article class="col-md-4 listing-<%=listing.id%>">
+      <div><%= image_tag (listing.image_url), class: "listing-image" %></div>
+      <div><%= listing.description %></div>
+      <div><%= listing.concat_address %></div>
+      <div><%= number_to_currency(listing.price, unit_price: "$") %></div>
+      <div><%= link_to "Checkout listing", listing_path(listing) %></div>
+    </article>
+    <% end %>
   <% end %>
 </section>

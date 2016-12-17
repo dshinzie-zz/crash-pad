@@ -37,26 +37,27 @@
     </thead>
     <tbody class="search-body">
       <tr class="bottom-row">
-        <th >
-           <input type="text" class="search-bar no-border" placeholder="Desintation">
-        </th>
-        <th>
-          <span><input type="text" id="checkin" class="no-border" placeholder="Check In"></span>
-          <span><input type="text" id="checkout" class="no-border" placeholder="Check Out"></span>
-        </th>
-        <th>
-          <div class="div-inline">
-            <select id="guest-select" class="form-control no-border">
-              <option value="" disabled selected>Guests</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6+</option>
-            </select>
-          </div>
-          <button type="button" id="search-button" class="btn btn-info">Search</button>
+
+        <%= form_tag listings_path, method: :get, class: "form-inline" do %>
+          <th>
+            <div class="form-group search-field">
+              <%= text_field_tag :q, nil, placeholder: "Destination", class: "search-bar no-border" %>
+            </div>
+          </th>
+
+          <th>
+            <span><%= text_field_tag :checkin, nil, placeholder: "Check In", class: "no-border" %></span>
+            <span><%= text_field_tag :checkout, nil, placeholder: "Check Out", class: "no-border" %></span>
+          </th>
+
+          <th>
+            <div class="div-inline">
+              <%= select_tag "guest-select", options_for_select([ ["1 Guest", "1"], ["2 Guests", "2"], ["3 Guests", "3"], ["4 Guests", "4"], ["5 Guests","5"], ["6+ Guests", "6"] ], include_blank: ""), class: "form-control no-border" %>
+            </div>
+            <%= submit_tag "Search", { id: "search-button", class: "btn btn-info" } %>
+          </th>
+        <% end %>
+
         </th>
       </tr>
     </tbody>

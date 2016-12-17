@@ -10,6 +10,7 @@ class GeocodeService
     end
   end
 
+
   private
 
   def conn

@@ -14,4 +14,8 @@ class Listing < ApplicationRecord
     end
   end
 
+  def concat_address
+    "#{city}"
+  end
+
 end

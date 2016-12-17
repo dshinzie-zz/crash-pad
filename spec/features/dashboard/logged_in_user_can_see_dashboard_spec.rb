@@ -8,7 +8,7 @@ describe "As a logged in user" do
       visit root_path
       click_on "Dashboard"
 
-      expect(current_path).to eq(dashboard_path)
+      expect(current_path).to eq(dashboard_path(user))
       expect(page).to have_content(user.first_name)
       expect(page).to have_css('img', user.avatar_url)
     end
@@ -41,7 +41,7 @@ describe "As a logged in user" do
 
       click_on "Update Account"
 
-      expect(current_path).to eq(dashboard_path)
+      expect(current_path).to eq(dashboard_path(user))
       expect(page).to have_content("johnnyquest@test.com")
       expect(page).to have_content("Johnny")
       expect(page).to have_content("Quest")

@@ -15,5 +15,7 @@ Rails.application.routes.draw do
 
   get '/dashboard', to: 'dashboard#show'
 
-  resources :listings, only: [:index, :show, :new, :create]
+  resources :listings, only: [:index, :show, :new, :create] do
+    resources :reviews, only: [:create, :edit, :update, :destroy]
+  end
 end

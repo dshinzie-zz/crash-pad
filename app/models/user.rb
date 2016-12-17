@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 
   has_many :listings
   has_many :bookings
+  has_many :reviews
   has_secure_password
   before_create :get_api_key
   before_validation :generate_slug

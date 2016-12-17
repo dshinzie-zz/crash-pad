@@ -39,7 +39,6 @@ class UsersController < ApplicationController
   end
 
   def resend
-    byebug
     AuthyUser.get_requested_sms(current_user)
     flash[:notice] = "Verification code re-sent"
     redirect_to verify_path

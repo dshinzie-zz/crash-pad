@@ -1,13 +1,19 @@
 Rails.application.routes.draw do
   root 'home#index'
-  get "/login", to: "sessions#new"
-  post "/login", to: "sessions#create"
-  delete "/logout", to: "sessions#destroy"
 
-  get '/dashboard', to: 'dashboard#show', path: ':user'
-
-  resources :users, only: [:new, :create, :edit, :update] do
+  get '/users/verify', to: 'users#show_verify', as: 'verify'
+  post '/users/verify'
+  post '/users/resend'
+  resources :users, only: [:new, :create, :edit, :update, :show] do
     resources :bookings, only: [:new, :create, :show]
   end
-  resources :listings, only: [:index, :show]
+
+  get "/login", to: "sessions#new"
+  post "/login", to: "sessions#create"
+
+  delete "/logout", to: "sessions#destroy"
+
+  get '/dashboard', to: 'dashboard#show'
+
+  resources :listings, only: [:index, :show, :new, :create]
 end

@@ -38,7 +38,7 @@
     <tbody class="search-body">
       <tr class="bottom-row">
 
-        <%= form_tag :search, method: :get, class: "form-inline" do %>
+        <%= form_tag listings_path, method: :get, class: "form-inline" do %>
           <th>
             <div class="form-group search-field">
               <%= text_field_tag :q, nil, placeholder: "Destination", class: "search-bar no-border" %>

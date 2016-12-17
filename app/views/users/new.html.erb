@@ -1,19 +1,40 @@
-<h1>Create Account</h1>
-  <%= form_for @user do |f| %>
-    <%= f.label :email %>
-    <%= f.email_field :email, placeholder: "Email" %>
+  <h2 class="account-header">Create Account</h2>
+  
+  <div class="form">
+    <%= form_for @user do |f| %>
+      <div class="text-input">
+        <%= f.label :email %>
+        <%= f.text_field :email, placeholder: "Email" %>
+        <span class="separator"> </span>
+      </div>
 
-    <%= f.label :password %>
-    <%= f.password_field :password, placeholder: "Password" %>
+      <div class="text-input">
+        <%= f.label :password %>
+        <%= f.password_field :password, placeholder: "Password" %>
+        <span class="separator"> </span>
+      </div>
 
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name, placeholder: "First Name" %>
+      <div class="text-input">
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name, placeholder: "First Name" %>
+        <span class="separator"> </span>
+      </div>
 
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name, placeholder: "Last Name" %>
+      <div class="text-input">
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name, placeholder: "Last Name" %>
+        <span class="separator"> </span>
+      </div>
 
-    <%= f.label :phone %>
-    <%= f.text_field :phone, placeholder: "Phone Number" %>
+      <div class="text-input">
+        <%= f.label :phone %>
+        <%= f.text_field :phone, placeholder: "Phone Number" %>
+        <span class="separator"> </span>
+      </div>
 
-    <%= f.submit "Create Account" %>
-  <% end %>
+      <div class="button-center">
+        <%= f.submit "Create Account", class: "update-btn" %>
+      </div>
+
+      <% end %>
+  </div>

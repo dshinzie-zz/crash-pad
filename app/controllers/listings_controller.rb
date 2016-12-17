@@ -14,6 +14,7 @@ class ListingsController < ApplicationController
 
   def create
     service = GeocodeService.new.find_lat_long(listing_address)
+    return bad_address unless valid_service?(service)
     @listing = Listing.new(listing_params)
     @listing.user = current_user
     if @listing.save
@@ -25,6 +26,15 @@ class ListingsController < ApplicationController
   end
 
   private
+
+  def bad_address
+    redirect_to new_listing_path
+    flash[:danger] = "Please enter a valid address"
+  end
+
+  def valid_service?(service)
+    service.class == Hash
+  end
 
     def listing_params
       params.require(:listing).permit(:city, :state, :address, :description, :price, :accomodation)

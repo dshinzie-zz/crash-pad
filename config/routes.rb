@@ -13,10 +13,10 @@ Rails.application.routes.draw do
 
   delete "/logout", to: "sessions#destroy"
 
-
   resources :listings, only: [:index, :show, :new, :create] do
     resources :reviews, only: [:create, :edit, :update, :destroy]
   end
 
   get '/dashboard', to: 'dashboard#show', path: ':user'
+
 end

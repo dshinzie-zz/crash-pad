@@ -8,13 +8,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      authy = Authy::API.register_user(
-        email: @user.email,
-        cellphone: @user.phone,
-        country_code: "1"
-        )
-      @user.update(authy_id: authy.id)
-      Authy::API.request_sms(id: @user.authy_id)
+      authy_user = AuthyUser.get_registered_user(@user)
+      AuthyUser.get_requested_sms(authy_user)
+
       redirect_to verify_path
     else
       redirect_to new_user_path
@@ -30,11 +26,13 @@ class UsersController < ApplicationController
   end
 
   def verify
-    @user = current_user
-    token = Authy::API.verify(id: @user.authy_id, token: params[:token])
+    token = AuthyUser.get_verified_user(current_user, params[:token])
     if token.ok?
-      @user.update(verified: true)
+      current_user.update(verified: true)
       send_message("You did it! Signup complete :)")
+
+      # AuthyUser.update_verified_user(@user)
+
       redirect_to user_path(@user)
     else
       flash.now[:danger] = "Incorrect code, please try again"

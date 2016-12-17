@@ -1,5 +1,9 @@
-<section class="container">
-  <div><%= image_tag(@listing.image_url, class: "listing_single_image") %></div>
+ <section class="container">
+  <div>
+    <% if @listing.image_url %>
+      <%= image_tag(@listing.image_url, class: "listing_single_image") %>
+    <% end %>
+  </div>
   <p><%= @listing.description %></p>
   <p><%= number_to_currency(@listing.price, unit_price: "$") %></p>
   <p><%= @listing.accomodation %></p>

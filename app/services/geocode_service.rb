@@ -2,7 +2,7 @@ class GeocodeService
 
   def find_lat_long(address)
     response = conn.get( '/maps/api/geocode/json', { address: address } )
-    JSON.parse(response.body, symbolize_names: true)
+    JSON.parse(response.body, symbolize_names: true)[:results].first[:geometry][:location]
   end
 
   private

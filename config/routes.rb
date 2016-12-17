@@ -4,6 +4,11 @@ Rails.application.routes.draw do
   get '/users/verify', to: 'users#show_verify', as: 'verify'
   post '/users/verify'
   post '/users/resend'
+
+  namespace :admin do
+    get '/dashboard', to: 'dashboard#show'
+  end
+
   resources :users, only: [:new, :create, :edit, :update, :show] do
     resources :bookings, only: [:new, :create, :show]
   end
@@ -14,7 +19,6 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
 
   get '/dashboard', to: 'dashboard#show'
-
 
   resources :listings, only: [:index, :show]
 end

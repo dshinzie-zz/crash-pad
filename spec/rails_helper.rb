@@ -30,6 +30,15 @@ def stub_login_user
   user
 end
 
+def stub_admin_user
+  user = User.create(email: "brad@test.com", password: "password", first_name: "admin", last_name: "admin", phone: "7273840", avatar_url: "http://www.aceshowbiz.com/images/photo/drake.jpg", role: 1)
+  visit "/login"
+  fill_in "Email", with: "brad@test.com"
+  fill_in "Password", with: "password"
+  click_button "Login"
+  user
+end
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in

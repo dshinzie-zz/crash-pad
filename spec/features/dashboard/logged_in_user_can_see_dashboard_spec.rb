@@ -7,6 +7,7 @@ describe "As a logged in user" do
 
       visit root_path
       click_on "Dashboard"
+      
 
       expect(current_path).to eq(dashboard_path)
       expect(page).to have_content(user.first_name)

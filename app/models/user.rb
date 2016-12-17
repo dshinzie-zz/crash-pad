@@ -8,9 +8,11 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true
   validates_presence_of :first_name, :last_name, :phone
 
+  enum role: [ :user, :admin ]
+
   private
 
-  def get_api_key
-    self.api_key = ApiKey.generate
-  end
+    def get_api_key
+      self.api_key = ApiKey.generate
+    end
 end

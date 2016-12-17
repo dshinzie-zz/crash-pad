@@ -28,5 +28,6 @@ describe Listing do
 
   describe "relationships" do
     it { should belong_to(:user) }
+    it { should have_many(:reviews) }
   end
 end

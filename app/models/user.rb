@@ -3,15 +3,16 @@ class User < ActiveRecord::Base
 
   has_many :listings
   has_many :bookings
+  has_many :reviews
   has_secure_password
   before_create :get_api_key
-  before_validation :generate_slug
+  after_create :generate_slug
   validates :email, presence: true, uniqueness: true
   validates :slug, uniqueness: true
   validates_presence_of :first_name, :last_name, :phone
 
   def generate_slug
-    self.slug = email.parameterize.gsub("-", "")
+    self.update(slug: email.parameterize.gsub("-", ""))
   end
 
   private

@@ -30,8 +30,8 @@ describe 'As a logged-in' do
       visit listings_path
 
       expect(current_path).to eq(listings_path)
-      expect(page).to have_content(listings.first.description)
-      expect(page).to have_content(listings.second.description)
+      expect(page).to have_content(listings.first.city)
+      expect(page).to have_content(listings.second.city)
     end
   end
 end

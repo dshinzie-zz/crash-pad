@@ -4,7 +4,7 @@ class Listing < ApplicationRecord
 
   validates :description, :price, :accomodation, presence: true
 
-  after_create :add_nights
+  # after_create :add_nights
 
   attr_accessor :address, :start_date, :end_date
 

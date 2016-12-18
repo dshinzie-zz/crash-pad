@@ -14,7 +14,8 @@
         <ul class="dropdown-menu">
           <% if current_user %>
             <li><%= link_to "Dashboard", dashboard_path(current_user) %></li>
-            <li><a>Messagess <span class="badge">1</span></a></li>
+            <li><%= link_to "Host a Trip", new_listing_path %></li>
+            <li><a>Messages <span class="badge">1</span></a></li>
             <li><a>Profile</a></li>
             <li class="divider"></li>
             <li><%= link_to "Logout", logout_path, method: :delete %></li>

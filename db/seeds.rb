@@ -7,7 +7,7 @@ class Seed
   end
 
   def create_users
-    50.times do |i|
+    25.times do |i|
       user = User.create!(
         email: Faker::Internet.email,
         first_name: Faker::Name.first_name,
@@ -15,7 +15,7 @@ class Seed
         phone: Faker::Number.number(10),
         password_digest: "password",
         api_key: nil,
-        avatar_url: nil,
+        avatar_url: "stock.jpg",
         role: 0)
 
       puts "User #{i}: #{user.email} created!"
@@ -23,7 +23,7 @@ class Seed
   end
 
   def create_admins
-    50.times do |i|
+    25.times do |i|
       user = User.create!(
         email: Faker::Internet.email,
         first_name: "admin" + Faker::Name.first_name,
@@ -31,24 +31,25 @@ class Seed
         phone: Faker::PhoneNumber.phone_number,
         password_digest: "password",
         api_key: nil,
-        avatar_url: nil,
+        avatar_url: "stock.jpg",
         role: 1)
 
-      puts "User #{i}: #{user.email} created!"
+      puts "Admin #{i}: #{user.email} created!"
     end
   end
 
   def create_listings
-    100.times do |i|
+    50.times do |i|
       listing = Listing.create!(
-        user: User.find(Random.new.rand(1..50)),
+        user: User.find(rand(1..24)),
         description: Faker::Lorem.paragraph,
-        image_url: Faker::Avatar.image,
+        image_url: "apt#{rand(1..5)}.jpg",
         latitude: Faker::Address.latitude,
         longitude: Faker::Address.longitude,
         price: Faker::Number.decimal(3,2),
         accomodation: Faker::Number.number(2),
-        city: Faker::Address.city)
+        city: Faker::Address.city,
+        state: Faker::Address.state)
 
       puts "Listing #{i}: listing for host #{listing.user.first_name} created!"
     end

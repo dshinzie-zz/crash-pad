@@ -4,7 +4,9 @@ class Listing < ApplicationRecord
 
   validates :description, :price, :accomodation, presence: true
 
-  attr_accessor :address
+  after_create :add_nights
+
+  attr_accessor :address, :start_date, :end_date
 
   def self.search(argument)
     if argument

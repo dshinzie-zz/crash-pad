@@ -70,12 +70,16 @@
     </tbody>
   </table>
 
-  <h3 class="features-header">Featured Listings</h3>
+  <div class="featured">
+    <h2 class="pinline">
+      <span>Featured</span>
+    </h2>
+  </div>
 
   <% @listings.each do |listing| %>
     <section class="listing-container">
-      <article class="col-md-4 listing-<%=listing.id%>">
-        <div><%= image_tag (listing.image_url), class: "listing-image" %></div>
+      <article class="col-md-3 listing-<%=listing.id%> listing-div">
+        <div><%= image_tag (listing.image_url), size: "300x200", class: "listing-image" %></div>
         <div><%= listing.description %></div>
         <div><%= listing.concat_address %></div>
         <div><%= number_to_currency(listing.price, unit_price: "$") %></div>

@@ -1,14 +1,22 @@
-<div class="container-fluid">
+<div class="full-width">
   <div id="welcomeCarousel" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
       <li data-target="#welcomeCarousel" data-slide-to="0" class="active"></li>
       <li data-target="#welcomeCarousel" data-slide-to="1"></li>
+      <li data-target="#welcomeCarousel" data-slide-to="2"></li>
+      <li data-target="#welcomeCarousel" data-slide-to="3"></li>
     </ol>
     <div class="carousel-inner" role="listbox">
-      <div class="item active alpine">
+      <div class="item active water">
         <p>Testing</p>
       </div>
-      <div class="item beach">
+      <div class="item city">
+        <p>Testing</p>
+      </div>
+      <div class="item bridge">
+        <p>Testing</p>
+      </div>
+      <div class="item cabin">
         <p>Testing</p>
       </div>
     </div>
@@ -37,19 +45,19 @@
     </thead>
     <tbody class="search-body">
       <tr class="bottom-row">
-
         <%= form_tag listings_path, method: :get, class: "form-inline" do %>
           <th>
             <div class="form-group search-field">
               <%= text_field_tag :q, nil, placeholder: "Destination", class: "search-bar no-border" %>
             </div>
           </th>
-
           <th>
-            <span><%= text_field_tag :checkin, nil, placeholder: "Check In", class: "no-border" %></span>
-            <span><%= text_field_tag :checkout, nil, placeholder: "Check Out", class: "no-border" %></span>
+            <div class="search-dates">
+              <span><%= text_field_tag :checkin, nil, placeholder: "Check In", class: "no-border" %></span>
+              <span class="search-span">To</span>
+              <span><%= text_field_tag :checkout, nil, placeholder: "Check Out", class: "no-border" %></span>
+            </div>
           </th>
-
           <th>
             <div class="div-inline">
               <%= select_tag "guest-select", options_for_select([ ["1 Guest", "1"], ["2 Guests", "2"], ["3 Guests", "3"], ["4 Guests", "4"], ["5 Guests","5"], ["6+ Guests", "6"] ], include_blank: ""), class: "form-control no-border" %>
@@ -57,11 +65,25 @@
             <%= submit_tag "Search", { id: "search-button", class: "btn btn-info" } %>
           </th>
         <% end %>
-
         </th>
       </tr>
     </tbody>
   </table>
+
+  <h3 class="features-header">Featured Listings</h3>
+
+  <% @listings.each do |listing| %>
+    <section class="listing-container">
+      <article class="col-md-4 listing-<%=listing.id%>">
+        <div><%= image_tag (listing.image_url), class: "listing-image" %></div>
+        <div><%= listing.description %></div>
+        <div><%= listing.concat_address %></div>
+        <div><%= number_to_currency(listing.price, unit_price: "$") %></div>
+        <div><%= link_to "Checkout listing", listing_path(listing) %></div>
+      </article>
+    </section>
+  <% end %>
+
   <script>
    $( function() {
      $( "#checkin" ).datepicker();

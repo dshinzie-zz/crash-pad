@@ -26,7 +26,8 @@
 .search-table {
   margin: 0 auto;
   padding: 10%;
-  width: 100%
+  width: 100%;
+  box-shadow: 5px 5px 5px #888888;
 }
 
 .search-header th {
@@ -56,11 +57,11 @@
 }
 
 #checkin, #checkout {
-  width: 100px;
+  width: 120px;
 }
 
-#checkin {
-  margin-right: 20%;
+.search-span {
+  margin-right: 6%;
 }
 
 tr.top-row th {
@@ -83,27 +84,49 @@ tr.bottom-row th {
 }
 
 .search-bar-div {
-  padding-top: 10%;
+  padding-top: 5%;
   padding-bottom: 10%;
+}
+
+.search-table, .search-table th {
+  border: 0 !important;
+  border-radius: 25px;
+}
+
+.features-header {
+  margin-top: 7%;
 }
 
 //Carousel
 
 .item {
-  &.beach{
-    background: image-url('beach.jpeg');
+  &.city{
+    background: image-url('city.jpg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
   }
-  &.alpine{
-    background: image-url('alpine.jpeg');
+  &.water{
+    background: image-url('water.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  &.bridge{
+    background: image-url('bridge.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  &.cabin{
+    background: image-url('cabin.jpg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
   }
   width: 100%;
-  height: 80vh;
+  height: 70vh;
+  margin-top: -10vh;
   p {
     color: white;
     font-size: 40px;
@@ -164,7 +187,6 @@ tr.bottom-row th {
   font-weight: bold;
   color: #333;
 }
-
 
 $page-bg: #282F32;
 $light-blue: #3599FF;
@@ -279,7 +301,28 @@ body {
   }
 }
 
+.full-width {
+  width: 100%;
+  margin-top: 0;
+}
+
+.no-padding {
+  padding: 0;
+  margin: 0;
+}
+
 // Body
 body {
   font-family: "Helvetica";
+}
+
+// map
+html,
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+#map {
+	height: 60%;
 }

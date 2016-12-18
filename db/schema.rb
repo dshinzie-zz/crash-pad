@@ -62,9 +62,9 @@ ActiveRecord::Schema.define(version: 20161217222014) do
     t.integer  "role",            default: 0
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
-    t.string   "slug"
     t.integer  "authy_id"
     t.boolean  "verified"
+    t.string   "slug"
   end
 
   add_foreign_key "bookings", "users"

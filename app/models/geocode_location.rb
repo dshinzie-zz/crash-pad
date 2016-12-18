@@ -5,11 +5,11 @@ class GeocodeLocation
   def initialize(attributes={})
 
     base_response = attributes[:results].first
-    # @address = base_response[:address_components].first[:short_name] + base_response[:address_components].second[:short_name]
-    # @city = base_response[:address_components].fourth[:short_name]
+    @address = get_location_component(base_response, :address) || nil
+    @city = get_location_component(base_response, :city) || nil
     @state = get_location_component(base_response, :state) || nil
-    # @latitude = base_response[:geometry][:location][:lat]
-    # @longitude = base_response[:geometry][:location][:lng]
+    @latitude = get_location_component(base_response, :latitude) || nil
+    @longitude = get_location_component(base_response, :longitude) || nil
   end
 
   def self.get_location(address)
@@ -23,13 +23,13 @@ class GeocodeLocation
 
   def get_location_component(response, component)
     case component
-    when :city
+    when :city && type_exists?(response, "locality")
       address_response(response, "locality")
-    when :state
+    when :state && type_exists?(response, "administrative_area_level_1")
       address_response(response, "administrative_area_level_1")
-    when :address
+    when :address && type_exists?(response, "street_number")
       address_response(response, "street_number") + address_response(response, "route")
-    when :latitude
+    when :latitude &&
       response[:geometry][:location][:lat]
     when :longitude
       response[:geometry][:location][:lng]
@@ -40,6 +40,22 @@ class GeocodeLocation
     response[:address_components].select do |datum|
       datum[:types].include?(type)
     end.first[:short_name]
+  end
+
+  def type_exists?(response, type)
+    !response[:address_components].select do |datum|
+      datum[:types].include?(type)
+    end.empty?
+  end
+
+  def attributes_for_update
+    {
+      address: address,
+      city: city,
+      state: state,
+      latitude: latitude,
+      longitude: longitude
+    }
   end
 
 end

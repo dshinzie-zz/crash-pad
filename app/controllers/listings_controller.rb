@@ -15,12 +15,12 @@ class ListingsController < ApplicationController
   def create
     location = GeocodeLocation.get_location(listing_address)
     return bad_address unless valid_location?(location)
-
+    
     @listing = Listing.new(listing_params)
     @listing.user = current_user
 
     if @listing.save
-      @listing.update(city: location.city, state: location.state, latitude: location.latitude, longitude: location.longitude)
+      @listing.update(location.attributes_for_update)
       redirect_to listing_path(@listing)
     else
       render :new

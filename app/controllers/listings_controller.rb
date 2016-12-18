@@ -36,7 +36,7 @@ class ListingsController < ApplicationController
       flash[:danger] = "Please enter a valid address"
     end
 
-    def valid_service?(location)
+    def valid_location?(location)
       location.class == GeocodeLocation
     end
 

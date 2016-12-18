@@ -12,7 +12,6 @@ describe "GeocodeLocation" do
       expect(location).to respond_to(:state)
       expect(location).to respond_to(:latitude)
       expect(location).to respond_to(:longitude)
-
     end
   end
 end

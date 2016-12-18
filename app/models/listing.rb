@@ -6,10 +6,9 @@ class Listing < ApplicationRecord
 
   attr_accessor :start_date, :end_date
 
-  # after_create :add_nights
+  after_create :set_default_photo
 
   def self.search(argument)
-
     return Listing.all if argument.nil?
 
     location = GeocodeLocation.get_location(argument)
@@ -30,6 +29,10 @@ class Listing < ApplicationRecord
 
   def self.featured
     order("created_at DESC").limit(3)
+  end
+
+  def set_default_photo
+    self.update(image_url: ActionController::Base.helpers.image_path("apt#{rand(1..5)}.jpg"))
   end
 
 end

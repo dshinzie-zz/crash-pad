@@ -7,6 +7,7 @@ describe "as a not logged in user" do
     let!(:denver_iowa) { create(:listing, state: "IA", city: "Denver") }
     let!(:austin) { create(:listing, state: "TX", city: "Austin") }
     let!(:dallas) { create(:listing, state: "TX", city: "Dallas") }
+    let!(:turing) { create(:listing, state: "CO", city: "Denver", address: "1510 Blake St")}
 
     context "when I search by city" do
       it "should return all listings within that city" do
@@ -34,6 +35,21 @@ describe "as a not logged in user" do
         expect(current_path).to eq(listings_path)
         expect(page).to have_content(austin.city)
         expect(page).to have_content(dallas.city)
+      end
+    end
+
+    context "when I search by address" do
+      it "should return the listing with that address" do
+        visit root_path
+
+        fill_in :q, with: "1510 Blake St"
+
+        click_button "Search"
+
+        expect(current_path).to eq(listings_path)
+        expect(page).to have_content(turing.city)
+        expect(page).to have_content(turing.state)
+        expect(page).to have_content(turing.address)
       end
     end
   end

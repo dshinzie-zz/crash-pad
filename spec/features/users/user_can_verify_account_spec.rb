@@ -15,17 +15,30 @@ describe "As a user" do
 
   context "I can verify an unverified account" do
     it "verifies the account" do
-      verified = Authy::Response.new({"message"=>"Token is valid.", "token"=>"is valid", "success"=>"true"})
       stub_login_user
 
       allow_any_instance_of(Authy::Response).to receive(:ok?).and_return(true)
       allow(TwilioSender).to receive(:send_message).and_return(true)
 
-      visit verify_path(user)
+      visit verify_path(User.first)
       click_on "Verify Token"
 
       expect(current_path).to eq(user_path(User.first))
       expect(page).to have_content("Verified")
     end
   end
+
+  context "I can't use a bad code" do
+    it "displays a flash message" do
+      stub_login_user
+
+      visit verify_path(User.first)
+      fill_in "token", with: 123
+      click_on "Verify Token"
+
+      expect(current_path).to eq(verify_path)
+      expect(page).to have_content("Incorrect code, please try again")
+    end
+  end
+
 end

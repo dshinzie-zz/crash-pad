@@ -7,12 +7,11 @@ describe "As a logged in user" do
 
       visit new_listing_path
 
-      fill_in "City", with: "Denver"
-      fill_in "State", with: "CO"
-      fill_in "Address", with: "1510 Blake Street"
-      fill_in "Description", with: "Test"
-      fill_in "Price", with: 99.00
-      fill_in "Accomodation", with: 2
+      fill_in "listing[city]", with: "Denver"
+      fill_in "listing[address]", with: "1510 Blake Street"
+      fill_in "listing[description]", with: "Test"
+      fill_in "listing[price]", with: 99.00
+      fill_in "listing[accomodation]", with: 2
 
       click_button "Create Listing"
 
@@ -28,12 +27,11 @@ describe "As a logged in user" do
 
       visit new_listing_path
 
-      fill_in "City", with: "blah"
-      fill_in "State", with: ""
-      fill_in "Address", with: ""
-      fill_in "Description", with: "Test"
-      fill_in "Price", with: 99.00
-      fill_in "Accomodation", with: 2
+      fill_in "listing[city]", with: "blah"
+      fill_in "listing[address]", with: ""
+      fill_in "listing[description]", with: "Test"
+      fill_in "listing[price]", with: 99.00
+      fill_in "listing[accomodation]", with: 2
 
       click_button "Create Listing"
 

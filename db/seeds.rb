@@ -44,8 +44,8 @@ class Seed
         user: User.find(Random.new.rand(1..50)),
         description: Faker::Lorem.paragraph,
         image_url: Faker::Avatar.image,
-        latitude: Faker::Number.decimal(2, 10),
-        longitude: Faker::Number.decimal(2, 10),
+        latitude: 39.75098438029149,
+        longitude: -104.9987568197085,
         price: Faker::Number.decimal(3,2),
         accomodation: Faker::Number.number(2))
 

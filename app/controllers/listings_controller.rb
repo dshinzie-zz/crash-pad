@@ -2,7 +2,6 @@ class ListingsController < ApplicationController
 
   def index
     @listings = Listing.search(params[:q])
-  
   end
 
   def show

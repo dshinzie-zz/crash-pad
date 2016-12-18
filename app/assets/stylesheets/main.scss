@@ -24,6 +24,34 @@
   margin: -30vh -10vh 0 -10vh;
 }
 
+.listing-details-container {
+  margin-left: 10%;
+  h2 { font-size: 5vh; }
+  p { font-size: 2.5vh; }
+}
+
+.booking-container {
+  margin-left: 5%;
+}
+
+.listing-show-container {
+  margin-top: 1%;
+}
+
+.listing-reviews {
+  text-align: center;
+  margin-top: 3%;
+  margin-left: 20%;
+  margin-right: 20%;
+
+  .panel-group {
+    width: 100vh;
+  }
+
+  h3 {margin-left: 10%;}
+}
+
+
 
 // navbar
 .badge {
@@ -348,13 +376,18 @@ body {
   margin-bottom: 6%;
 }
 
-.featured-price {
+.featured-price,
+.featured-price-show {
   font-weight: bold;
   margin-right: 2%;
 }
 
 .featured-price-div {
   margin-top: 3%;
+}
+.featured-price-show,
+.address-show {
+  font-size: 4vh;
 }
 
 .pinline {

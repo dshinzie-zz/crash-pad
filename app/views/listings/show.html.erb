@@ -6,21 +6,30 @@
   </div>
 <% end %>
 
- <section class="container">
-  <div>
-
+ <section class="container-fluid listing-show-container">
+   <div class="col-md-6 listing-details-container">
+     <div class="featured-price-div">
+       <span class="featured-price-show"><%= number_to_currency(@listing.price, unit_price: "$") %></span><span class="address-show"><%= @listing.concat_address %><span>
+     </div>
+    <div>
+      <h2>About This Listing</h2>
+      <p><%= @listing.description %></p>
+      <p>Accomdation: <%= @listing.accomodation %></p>
+    </div>
   </div>
-  <p><%= @listing.description %></p>
-  <p><%= number_to_currency(@listing.price, unit_price: "$") %></p>
-  <p><%= @listing.accomodation %></p>
 
-  <% if current_user %>
-  <%= button_to "Request to Book", new_user_booking_path(current_user), method: :get, class: "btn btn-primary" %>
-  <% else %>
-  <%= button_to "Request to Book", method: :get, class: "btn btn-primary", disabled: true %>
-  <% end %>
-  <div class="col-md-12">
-      <h4>Listing Reviews</h4>
+  <div class="col-md-4 booking-container">
+    <h3>Interest in this listing?</h3>
+    <% if current_user %>
+      <%= button_to "Request to Book", new_user_booking_path(current_user), method: :get, class: "btn btn-primary" %>
+    <% else %>
+      <%= button_to "Request to Book", method: :get, class: "btn btn-primary", disabled: true %>
+    <% end %>
+  </div>
+
+
+  <div class="col-md-6 listing-reviews">
+      <h3>Listing Reviews</h3>
       <div class="container panel-group">
         <% @listing.reviews.each do |review| %>
           <div class="panel panel-default review_tile">
@@ -51,4 +60,6 @@
         </div>
       </div>
     </div>
+
+
 </section>

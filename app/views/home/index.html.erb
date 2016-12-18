@@ -8,16 +8,16 @@
     </ol>
     <div class="carousel-inner" role="listbox">
       <div class="item active water">
-        <p>Testing</p>
+        <p class="water-text">Find your next adventure.</p>
       </div>
       <div class="item city">
-        <p>Testing</p>
+        <p>Homes, experiences, and places.</p>
       </div>
       <div class="item bridge">
-        <p>Testing</p>
+        <p>Welcome to the world of trips.</p>
       </div>
       <div class="item cabin">
-        <p>Testing</p>
+        <p>Don't be a loser that stays at home.</p>
       </div>
     </div>
     <a class="left carousel-control" href="#welcomeCarousel" data-slide="prev">
@@ -70,15 +70,19 @@
     </tbody>
   </table>
 
-  <h3 class="features-header">Featured Listings</h3>
+  <div class="featured">
+    <h2 class="pinline">
+      <span>Featured</span>
+    </h2>
+  </div>
 
   <% @listings.each do |listing| %>
     <section class="listing-container">
-      <article class="col-md-4 listing-<%=listing.id%>">
-        <div><%= image_tag (listing.image_url), class: "listing-image" %></div>
-        <div><%= listing.description %></div>
-        <div><%= listing.concat_address %></div>
-        <div><%= number_to_currency(listing.price, unit_price: "$") %></div>
+      <article class="col-md-3 listing-<%=listing.id%> listing-div">
+        <div><%= image_tag (listing.image_url), size: "300x200", class: "listing-image" %></div>
+        <div class="featured-price-div">
+          <span class="featured-price"><%= number_to_currency(listing.price, unit_price: "$") %></span><span><%= listing.concat_address %><span>
+        </div>
         <div><%= link_to "Checkout listing", listing_path(listing) %></div>
       </article>
     </section>

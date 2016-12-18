@@ -47,7 +47,8 @@ class Seed
         latitude: Faker::Address.latitude,
         longitude: Faker::Address.longitude,
         price: Faker::Number.decimal(3,2),
-        accomodation: Faker::Number.number(2))
+        accomodation: Faker::Number.number(2),
+        city: Faker::Address.city)
 
       puts "Listing #{i}: listing for host #{listing.user.first_name} created!"
     end

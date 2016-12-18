@@ -1,19 +1,28 @@
-<div id="map">
-  <%= render partial: "map" %>
-</div>
-
-<section class="container listing-container">
+<section class="container-fluid">
+  <div class="col-md-6">
   <% if @listings.empty? %>
     <%= render partial: "no_listings" %>
   <% else %>
     <% @listings.each do |listing| %>
-    <article class="col-md-4 listing-<%=listing.id%>">
-      <div><%= image_tag (listing.image_url), class: "listing-image" %></div>
+    <article class="col-md-6 listing-<%=listing.id%>">
+      <div><%= image_tag (listing.image_url), size: "300x200", class: "listing-image" %></div>
       <div><%= listing.description %></div>
-      <div><%= listing.concat_address %></div>
-      <div><%= number_to_currency(listing.price, unit_price: "$") %></div>
+      <div class="featured-price-div">
+        <span class="featured-price"><%= number_to_currency(listing.price, unit_price: "$") %></span><span><%= listing.concat_address %><span>
+      </div>
       <div><%= link_to "Checkout listing", listing_path(listing) %></div>
     </article>
     <% end %>
   <% end %>
+</div>
 </section>
+
+
+<div class="container-fluid">
+  <div class="map-position">
+    <div id="map">
+      <%= render partial: "map" %>
+    </div>
+  </div>
+
+</div>

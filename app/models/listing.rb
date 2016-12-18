@@ -18,4 +18,8 @@ class Listing < ApplicationRecord
     "#{city}"
   end
 
+  def self.featured
+    order("created_at DESC").limit(3)
+  end
+
 end

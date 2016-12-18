@@ -7,8 +7,7 @@ class GeocodeLocation
     base_response = attributes[:results].first
     # @address = base_response[:address_components].first[:short_name] + base_response[:address_components].second[:short_name]
     # @city = base_response[:address_components].fourth[:short_name]
-    @state = get_location_component(base_response, :state) || nil#base_response[:address_components][5][:short_name]
-    require "pry"; binding.pry
+    @state = get_location_component(base_response, :state) || nil
     # @latitude = base_response[:geometry][:location][:lat]
     # @longitude = base_response[:geometry][:location][:lng]
   end

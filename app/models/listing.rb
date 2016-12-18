@@ -9,11 +9,15 @@ class Listing < ApplicationRecord
   attr_accessor :address, :start_date, :end_date
 
   def self.search(argument)
-    
+
     location = GeocodeLocation.get_location(argument)
 
-    if argument
-      where(city: argument)
+    if !location.address.nil?
+      where(address: location.address)
+    elsif !location.city.nil?
+      where(city: location.city)
+    elsif !location.state.nil?
+      where(city: location.state)
     else
       Listing.all
     end

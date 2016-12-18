@@ -3,8 +3,8 @@ class GeocodeLocation
   attr_reader :address, :city, :state, :latitude, :longitude
 
   def initialize(attributes={})
-
     base_response = attributes[:results].first
+
     @address = get_location_component(base_response, :address) || nil
     @city = get_location_component(base_response, :city) || nil
     @state = get_location_component(base_response, :state) || nil
@@ -22,16 +22,15 @@ class GeocodeLocation
   end
 
   def get_location_component(response, component)
-    case component
-    when :city && type_exists?(response, "locality")
+    if component == :address && type_exists?(response, "street_number")
+      "#{address_response(response, 'street_number')} #{address_response(response, 'route')}"
+    elsif component == :city && type_exists?(response, "locality")
       address_response(response, "locality")
-    when :state && type_exists?(response, "administrative_area_level_1")
+    elsif component == :state && type_exists?(response, "administrative_area_level_1")
       address_response(response, "administrative_area_level_1")
-    when :address && type_exists?(response, "street_number")
-      address_response(response, "street_number") + address_response(response, "route")
-    when :latitude &&
+    elsif component == :latitude
       response[:geometry][:location][:lat]
-    when :longitude
+    elsif component == :longitude
       response[:geometry][:location][:lng]
     end
   end

@@ -4,9 +4,13 @@ class Listing < ApplicationRecord
 
   validates :description, :price, :accomodation, presence: true
 
+  attr_accessor :start_date, :end_date
+
   # after_create :add_nights
 
   def self.search(argument)
+
+    return Listing.all if argument.nil?
 
     location = GeocodeLocation.get_location(argument)
     return {} if location == :bad_address
@@ -17,13 +21,11 @@ class Listing < ApplicationRecord
       where(city: location.city)
     elsif !location.state.nil?
       where(state: location.state)
-    else
-      Listing.all
     end
   end
 
   def concat_address
-    "#{city}"
+    "#{address} #{city} #{state}"
   end
 
   def self.featured

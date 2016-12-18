@@ -41,4 +41,16 @@ describe "As a user" do
     end
   end
 
+  context "I can resend a code" do
+    it "resends a verification code" do
+      stub_login_user
+
+      visit verify_path(User.first)
+      click_on "Resend code"
+
+      expect(current_path).to eq(verify_path)
+      expect(page).to have_content("Verification code re-sent")
+    end
+  end
+
 end

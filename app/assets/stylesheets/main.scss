@@ -90,13 +90,13 @@ tr.bottom-row th {
 //Carousel
 
 .item {
-  &.beach{
-    background: image-url('beach.jpeg');
+  &.city{
+    background: image-url('city.jpg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
   }
-  &.alpine{
+  &.water{
     background: image-url('water.jpg');
     background-position: center;
     background-size: cover;

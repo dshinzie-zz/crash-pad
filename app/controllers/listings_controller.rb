@@ -13,8 +13,6 @@ class ListingsController < ApplicationController
   end
 
   def create
-    # service = GeocodeService.new.find_lat_long(listing_address)
-
     location = GeocodeLocation.get_location(listing_address)
     return bad_address unless valid_location?(location)
 

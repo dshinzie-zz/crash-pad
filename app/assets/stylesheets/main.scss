@@ -1,3 +1,4 @@
+// listings
 .listing-div {
   margin-left: 4%;
   margin-right: 4%;
@@ -9,9 +10,22 @@
 
 .listing-image {
   margin-bottom: 5%;
-
 }
 
+.listing-crop {
+    width: 110%;
+    height: 70vh;
+    overflow: hidden;
+}
+
+.listing-crop .listing-single-image {
+  width: 100%;
+  height: auto;
+  margin: -30vh -10vh 0 -10vh;
+}
+
+
+// navbar
 .badge {
   margin-left: 3%;
 }
@@ -94,6 +108,7 @@ tr.bottom-row th {
   padding-top: 5%;
   padding-bottom: 6%;
 }
+
 
 //Carousel
 .item {

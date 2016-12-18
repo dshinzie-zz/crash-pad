@@ -1,8 +1,14 @@
+
+
+<% if @listing.image_url %>
+  <div class="listing-crop">
+      <%= image_tag(@listing.image_url, class: "listing-single-image") %>
+  </div>
+<% end %>
+
  <section class="container">
   <div>
-    <% if @listing.image_url %>
-      <%= image_tag(@listing.image_url, class: "listing_single_image") %>
-    <% end %>
+
   </div>
   <p><%= @listing.description %></p>
   <p><%= number_to_currency(@listing.price, unit_price: "$") %></p>

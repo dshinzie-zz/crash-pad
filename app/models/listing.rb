@@ -1,6 +1,7 @@
 class Listing < ApplicationRecord
   belongs_to :user
   has_many :reviews, dependent: :destroy
+  has_many :nights
 
   validates :description, :price, :accomodation, presence: true
 
@@ -33,6 +34,12 @@ class Listing < ApplicationRecord
 
   def set_default_photo
     self.update(image_url: ActionController::Base.helpers.image_path("apt#{rand(1..5)}.jpg"))
+  end
+
+  def create_nights(start_date, end_date)
+    Date.parse(start_date).upto(Date.parse(end_date)) do |date|
+      Night.create(date: date, listing: self)
+    end
   end
 
 end

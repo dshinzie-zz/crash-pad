@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161218030052) do
+ActiveRecord::Schema.define(version: 20161219210016) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20161218030052) do
     t.integer  "authy_id"
     t.boolean  "verified"
     t.string   "slug"
+    t.integer  "status",          default: 0
   end
 
   add_foreign_key "bookings", "users"

@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   validates_presence_of :first_name, :last_name, :phone
 
   enum role: [ :user, :admin ]
+  enum status: [ :online, :offline ]
 
   def generate_slug
     self.update(slug: email.parameterize.gsub("-", ""))

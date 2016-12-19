@@ -10,11 +10,12 @@ describe "A logged in admin" do
       stub_admin_user
 
       visit admin_listings_path
-
-      click_on "#{first_listing.id}"
+      within ".listing-#{first_listing.id}" do
+        find(:xpath, "//a[@href='/admin/listings/#{first_listing.id}']").click
+      end
 
       expect(current_path).to eq(admin_listing_path(first_listing))
-      expect(page).to have_content(first_listing.id)
+
       expect(page).to have_content(first_listing.user_id)
       expect(page).to have_content(first_listing.description)
       expect(page).to have_content(first_listing.price)

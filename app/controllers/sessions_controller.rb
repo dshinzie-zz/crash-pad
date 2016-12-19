@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
       if current_user.admin?
         redirect_to admin_dashboard_path
       else
-        redirect_to dashboard_path
+        redirect_to dashboard_path(user: current_user.slug)
       end
     end
 

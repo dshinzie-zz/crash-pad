@@ -11,12 +11,7 @@ class AuthyUser
   end
 
   def self.get_requested_sms(user)
-    Authy::API.request_sms(id: user.authy_id)
-  end
-
-  def self.update_verified_user(user)
-    user.update(verified: true)
-    TwilioSender.send_message(user, "You did it! Signtup Complete :)")
+      Authy::API.request_sms(id: user.authy_id)
   end
 
 end

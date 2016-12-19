@@ -1,9 +1,60 @@
-.listing-image {
-  margin-left: 10%;
+// listings
+.listing-div {
+  margin-left: 4%;
+  margin-right: 4%;
+}
+
+.listing-container {
   margin-right: 10%;
 }
 
-.badge{
+.listing-image {
+  margin-bottom: 5%;
+}
+
+.listing-crop {
+    width: 110%;
+    height: 70vh;
+    overflow: hidden;
+}
+
+.listing-crop .listing-single-image {
+  width: 100%;
+  height: auto;
+  margin: -30vh -10vh 0 -10vh;
+}
+
+.listing-details-container {
+  margin-left: 10%;
+  h2 { font-size: 5vh; }
+  p { font-size: 2.5vh; }
+}
+
+.booking-container {
+  margin-left: 5%;
+}
+
+.listing-show-container {
+  margin-top: 1%;
+}
+
+.listing-reviews {
+  text-align: center;
+  margin-top: 3%;
+  margin-left: 20%;
+  margin-right: 20%;
+
+  .panel-group {
+    width: 100vh;
+  }
+
+  h3 {margin-left: 10%;}
+}
+
+
+
+// navbar
+.badge {
   margin-left: 3%;
 }
 
@@ -26,7 +77,7 @@
 .search-table {
   margin: 0 auto;
   padding: 10%;
-  width: 100%
+  width: 100%;
 }
 
 .search-header th {
@@ -49,7 +100,6 @@
 
 #search-button {
   margin-left: 20%;
-
 }
 
 .div-inline {
@@ -57,11 +107,11 @@
 }
 
 #checkin, #checkout {
-  width: 100px;
+  width: 120px;
 }
 
-#checkin {
-  margin-right: 20%;
+.search-span {
+  margin-right: 6%;
 }
 
 tr.top-row th {
@@ -74,7 +124,6 @@ tr.bottom-row th {
   border-bottom: thin solid;
   padding: 1% 1.5% 1% 1.5%;
   border-color: #979797;
-
 }
 
 tr.top-row th,
@@ -84,33 +133,64 @@ tr.bottom-row th {
 }
 
 .search-bar-div {
-  padding-top: 10%;
-  padding-bottom: 10%;
+  padding-top: 5%;
+  padding-bottom: 6%;
 }
 
-//Carousel
 
+//Carousel
 .item {
-  &.beach{
-    background: image-url('beach.jpeg');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-  &.alpine{
-    background: image-url('alpine.jpeg');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-  width: 100%;
-  height: 80vh;
   p {
     color: white;
     font-size: 40px;
-    text-align: center;
+    // text-align: center;
     line-height: 80vh;
   }
+
+  &.city{
+    background: image-url('city.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    p {
+      line-height: 58vh;
+      margin-left: 50%;
+      color: #2F4F4F;
+    }
+  }
+  &.water{
+    background: image-url('water.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    p {
+      line-height: 58vh;
+      margin-left: 10%;
+    }
+  }
+  &.bridge{
+    background: image-url('bridge.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    p {
+      line-height: 100vh;
+      margin-left: 10%;
+      color: #white;
+    }
+  }
+  &.cabin{
+    background: image-url('cabin.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    p {
+      margin-left: 47%;
+    }
+  }
+  width: 100%;
+  height: 70vh;
+  margin-top: -10vh;
 }
 
 // Profile Dashboard
@@ -166,7 +246,7 @@ tr.bottom-row th {
   color: #333;
 }
 
-
+// forms
 $page-bg: #282F32;
 $light-blue: #3599FF;
 $bright-blue: #68B3FF;
@@ -280,7 +360,93 @@ body {
   }
 }
 
+.full-width {
+  width: 100%;
+  margin-top: 0;
+}
+
+.no-padding {
+  padding: 0;
+  margin: 0;
+}
+
+// featured
+.featured {
+  margin-top: 6%;
+  margin-bottom: 6%;
+}
+
+.featured-price,
+.featured-price-show {
+  font-weight: bold;
+  margin-right: 2%;
+}
+
+.featured-price-div {
+  margin-top: 3%;
+}
+.featured-price-show,
+.address-show {
+  font-size: 4vh;
+}
+
+.pinline {
+  text-align: center;
+  display: block;
+  overflow: hidden;
+  font-size: 4em;
+  margin: 20px 0;
+  font-family: 'Helvetica';
+}
+
+.pinline span {
+    position: relative;
+    display: inline-block;
+    line-height: 1;
+
+    &:before, &:after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          height: 1px;
+          background: #000;
+          width: 200px;
+        }
+
+        &:before {
+          left: 100%;
+          margin-left: 20px; }
+
+        &:after {
+          right: 100%;
+          margin-right: 20px; }
+}
 // Body
 body {
   font-family: "Helvetica";
+}
+
+// map
+html,
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.map-position {
+  position: fixed;
+  right: 0%;
+  width: 40%;
+	height: 100%;
+  bottom: 0%;
+
+  #map {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+body {
+  padding-top: 50px;
 }

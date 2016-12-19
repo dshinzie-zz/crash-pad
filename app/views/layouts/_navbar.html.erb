@@ -1,5 +1,4 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
+<nav class="navbar navbar-default no-padding navbar-fixed-top">
     <div class="nav navbar-nav">
       <a href="/" class="navbar-brand"><i class="glyphicon glyphicon-bed"></i> crash<span id="pad">PAD</span></a>
     </div>
@@ -14,8 +13,9 @@
         </a>
         <ul class="dropdown-menu">
           <% if current_user %>
-            <li><%= link_to "Dashboard", dashboard_path %></li>
-            <li><a>Messagess <span class="badge">1</span></a></li>
+            <li><%= link_to "Dashboard", dashboard_path(current_user) %></li>
+            <li><%= link_to "Host a Trip", new_listing_path %></li>
+            <li><a>Messages <span class="badge">1</span></a></li>
             <li><a>Profile</a></li>
             <li class="divider"></li>
             <li><%= link_to "Logout", logout_path, method: :delete %></li>
@@ -27,5 +27,4 @@
         </ul>
       </li>
     </ul>
-  </div>
 </nav>

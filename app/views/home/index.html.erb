@@ -1,15 +1,23 @@
-<div class="container-fluid">
+<div class="full-width">
   <div id="welcomeCarousel" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
       <li data-target="#welcomeCarousel" data-slide-to="0" class="active"></li>
       <li data-target="#welcomeCarousel" data-slide-to="1"></li>
+      <li data-target="#welcomeCarousel" data-slide-to="2"></li>
+      <li data-target="#welcomeCarousel" data-slide-to="3"></li>
     </ol>
     <div class="carousel-inner" role="listbox">
-      <div class="item active alpine">
-        <p>Testing</p>
+      <div class="item active water">
+        <p class="water-text">Find your next adventure.</p>
       </div>
-      <div class="item beach">
-        <p>Testing</p>
+      <div class="item city">
+        <p>Homes, experiences, and places.</p>
+      </div>
+      <div class="item bridge">
+        <p>Welcome to the world of trips.</p>
+      </div>
+      <div class="item cabin">
+        <p>Don't be a loser that stays at home.</p>
       </div>
     </div>
     <a class="left carousel-control" href="#welcomeCarousel" data-slide="prev">
@@ -37,30 +45,49 @@
     </thead>
     <tbody class="search-body">
       <tr class="bottom-row">
-        <th >
-           <input type="text" class="search-bar no-border" placeholder="Desintation">
-        </th>
-        <th>
-          <span><input type="text" id="checkin" class="no-border" placeholder="Check In"></span>
-          <span><input type="text" id="checkout" class="no-border" placeholder="Check Out"></span>
-        </th>
-        <th>
-          <div class="div-inline">
-            <select id="guest-select" class="form-control no-border">
-              <option value="" disabled selected>Guests</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6+</option>
-            </select>
-          </div>
-          <button type="button" id="search-button" class="btn btn-info">Search</button>
+        <%= form_tag listings_path, method: :get, class: "form-inline" do %>
+          <th>
+            <div class="form-group search-field">
+              <%= text_field_tag :q, nil, placeholder: "Destination", class: "search-bar no-border" %>
+            </div>
+          </th>
+          <th>
+            <div class="search-dates">
+              <span><%= text_field_tag :checkin, nil, placeholder: "Check In", class: "no-border" %></span>
+              <span class="search-span">To</span>
+              <span><%= text_field_tag :checkout, nil, placeholder: "Check Out", class: "no-border" %></span>
+            </div>
+          </th>
+          <th>
+            <div class="div-inline">
+              <%= select_tag "guest-select", options_for_select([ ["1 Guest", "1"], ["2 Guests", "2"], ["3 Guests", "3"], ["4 Guests", "4"], ["5 Guests","5"], ["6+ Guests", "6"] ], include_blank: ""), class: "form-control no-border" %>
+            </div>
+            <%= submit_tag "Search", { id: "search-button", class: "btn btn-info" } %>
+          </th>
+        <% end %>
         </th>
       </tr>
     </tbody>
   </table>
+
+  <div class="featured">
+    <h2 class="pinline">
+      <span>Featured</span>
+    </h2>
+  </div>
+
+  <% @listings.each do |listing| %>
+    <section class="listing-container">
+      <article class="col-md-3 listing-<%=listing.id%> listing-div">
+        <div><%= image_tag (listing.image_url), size: "300x200", class: "listing-image" %></div>
+        <div class="featured-price-div">
+          <span class="featured-price"><%= number_to_currency(listing.price, unit_price: "$") %></span><span><%= listing.concat_address %><span>
+        </div>
+        <div><%= link_to "Checkout listing", listing_path(listing) %></div>
+      </article>
+    </section>
+  <% end %>
+
   <script>
    $( function() {
      $( "#checkin" ).datepicker();

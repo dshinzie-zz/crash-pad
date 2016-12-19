@@ -1,3 +1,32 @@
-<% @listings.each do |listing| %>
-<%= listing.id %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3">
+    </div>
+    <div class="col-sm-6">
+    <table style="width: auto;" data-toggle="table">
+      <thead>
+        <tr>
+          <th style="width: 10%">
+          <th data-sortable="true">Listing ID</th>
+          <th data-sortable="true">Host ID</th>
+          <th data-sortable="true">City</th>
+          <th data-sortable="true">State</th>
+        </tr>
+      </thead>
+
+     <tbody>
+       <% @listings.each do |listing| %>
+        <tr class="listing-<%=listing.id%>">
+          <td><a href='/admin/listings/<%=listing.id%>'><span class="glyphicon glyphicon-cog" style="color:grey"></span></a></td>
+          <td><%= listing.id %></td>
+          <td><%= listing.user_id %></td>
+          <td><%= listing.city %></td>
+          <td><%= listing.state %></td>
+        </tr>
+       <% end %>
+      </tbody>
+     </table>
+    </div>
+    <div class="col-sm-3">
+    </div>
+  </div>

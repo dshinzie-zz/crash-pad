@@ -12,7 +12,7 @@ describe "A not logged in user" do
 
     click_button "Create Account"
 
-    expect(current_path).to eq(dashboard_path)
+    expect(current_path).to eq(users_verify_path)
   end
 
   scenario "returns to form if account not valid" do

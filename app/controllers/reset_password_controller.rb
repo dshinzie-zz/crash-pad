@@ -17,17 +17,6 @@ class ResetPasswordController < ApplicationController
     end
   end
 
-  def verify
-    token = AuthyUser.get_verified_user(current_user, params[:token])
-    if token.ok?
-      AuthyUser.update_verified_user(current_user)
-      redirect_to user_path(current_user)
-    else
-      flash.now[:danger] = "Incorrect code, please try again"
-      render :show_verify
-    end
-  end
-
   private
 
   def user_params

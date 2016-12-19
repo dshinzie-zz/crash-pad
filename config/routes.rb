@@ -1,13 +1,11 @@
 Rails.application.routes.draw do
   root 'home#index'
 
-  get '/users/verify', to: 'verify#show_verify', as: 'verify'
-  post '/users/verify', to: 'verify#verify'
-  post '/users/resend', to: 'verify#resend'
+  get '/users/verify', to: 'users#show_verify', as: 'verify'
+  post '/users/verify'
+  post '/users/resend'
   resources :users, only: [:new, :create, :edit, :update, :show] do
     resources :bookings, only: [:new, :create, :show]
-    get '/reset_password', to: 'reset_password#edit', as: 'reset_password'
-    patch '/reset_password', to: 'reset_password#update'
   end
 
   get "/login", to: "sessions#new"

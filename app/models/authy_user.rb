@@ -16,7 +16,7 @@ class AuthyUser
 
   def self.update_verified_user(user)
     user.update(verified: true)
-    TwilioSender.send_message(user, "You did it! Verification Complete :)")
+    TwilioSender.send_message(user, "You did it! Signtup Complete :)")
   end
 
 end

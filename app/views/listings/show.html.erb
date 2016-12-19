@@ -9,10 +9,26 @@
   <p><%= @listing.accomodation %></p>
 
   <% if current_user %>
-  <%= button_to "Request to Book", new_user_booking_path(current_user), method: :get, class: "btn btn-primary" %>
+    <%= button_to "Request to Book", new_user_booking_path(current_user), method: :get, class: "btn btn-primary" %>
   <% else %>
-  <%= button_to "Request to Book", method: :get, class: "btn btn-primary", disabled: true %>
+    <%= button_to "Request to Book", method: :get, class: "btn btn-primary", disabled: true %>
   <% end %>
+  <% if current_user %>
+  <div class="btn-group dropup">
+    <button type="button" class="btn btn-secondary dropdown-toggle" name="Rate" value="Rate" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    </button>
+    <div class="dropdown-menu">
+      <%= link_to "Terrible", listing_ratings_path(@listing.id, {:score => "Terrible", :user_id => current_user}), method: :post, class: "dropdown-item" %>
+      <%= link_to "Below_Average", listing_ratings_path(@listing.id, {:score => "Below_Average", :user_id => current_user}), method: :post, class: "dropdown-item" %>
+      <%= link_to "Mediocre", listing_ratings_path(@listing.id, {:score => "Mediocre", :user_id => current_user}), method: :post, class: "dropdown-item" %>
+      <%= link_to "Above_Average", listing_ratings_path(@listing.id, {:score => "Above_Average", :user_id => current_user}), method: :post, class: "dropdown-item" %>
+      <%= link_to "Great", listing_ratings_path(@listing.id, {:score => "Great", :user_id => current_user}), method: :post, class: "dropdown-item" %>
+   </div>
+  </div>
+  <% end %>
+  <div class="col-md-4">
+    <h2>This listing has a <%= @listing.average_rating %> rating!<h2>
+  </div>
   <div class="col-md-12">
       <h4>Listing Reviews</h4>
       <div class="container panel-group">

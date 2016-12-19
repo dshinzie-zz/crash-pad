@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   post '/users/resend'
   resources :users, only: [:new, :create, :edit, :update, :show] do
     resources :bookings, only: [:new, :create, :show]
+    get '/reset_password', to: 'reset_password#edit', as: 'reset_password'
+    patch '/reset_password', to: 'reset_password#update'
   end
 
   get "/login", to: "sessions#new"

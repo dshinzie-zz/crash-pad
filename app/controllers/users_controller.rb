@@ -10,7 +10,6 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       authy_user = AuthyUser.get_registered_user(@user)
       AuthyUser.get_requested_sms(authy_user)
-
       redirect_to verify_path
     else
       redirect_to new_user_path

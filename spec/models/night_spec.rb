@@ -4,6 +4,9 @@ describe Night do
   describe "validations" do
     context "valid attributes" do
       it { should validate_presence_of(:date) }
+      it "text" do
+
+      end
     end
   end
 

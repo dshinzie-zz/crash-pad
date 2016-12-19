@@ -21,6 +21,7 @@ class ListingsController < ApplicationController
 
     if @listing.save
       @listing.update(location.attributes_for_update)
+      @listing.create_nights(@listing.start_date, @listing.end_date)
       redirect_to listing_path(@listing)
     else
       render :new
@@ -39,7 +40,7 @@ class ListingsController < ApplicationController
     end
 
     def listing_params
-      params.require(:listing).permit(:city, :state, :address, :description, :price, :accomodation)
+      params.require(:listing).permit(:city, :state, :address, :description, :price, :accomodation, :start_date, :end_date)
     end
 
     def listing_address

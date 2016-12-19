@@ -3,9 +3,7 @@ class Listing < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :nights
 
-  validates :description, :price, :accomodation, presence: true
-
-  attr_accessor :start_date, :end_date
+  validates :description, :price, :accomodation, :start_date, :end_date, presence: true
 
   after_create :set_default_photo
 
@@ -37,7 +35,7 @@ class Listing < ApplicationRecord
   end
 
   def create_nights(start_date, end_date)
-    Date.parse(start_date).upto(Date.parse(end_date)) do |date|
+    start_date.upto(end_date) do |date|
       Night.create(date: date, listing: self)
     end
   end

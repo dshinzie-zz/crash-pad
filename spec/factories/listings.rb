@@ -7,6 +7,8 @@ FactoryGirl.define do
     longitude 1.5
     price 1.5
     accomodation 1
+    start_date '1/1/2017'
+    end_date '2/1/2017'
   end
   sequence :description do |n|
     "Description #{n}"

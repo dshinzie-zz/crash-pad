@@ -38,8 +38,8 @@ describe Listing do
         listing = create(:listing, start_date: '1/1/2017', end_date: '3/1/2017')
         listing.create_nights(listing.start_date, listing.end_date)
 
-        expect(listing.nights.first.date).to eq(Date.parse(listing.start_date))
-        expect(listing.nights.last.date).to eq(Date.parse(listing.end_date))
+        expect(listing.nights.first.date).to eq(listing.start_date)
+        expect(listing.nights.last.date).to eq(listing.end_date)
         expect(listing.nights.count).to eq(3)
       end
 
@@ -47,8 +47,8 @@ describe Listing do
         listing = create(:listing, start_date: '30/12/2016', end_date: '1/1/2017')
         listing.create_nights(listing.start_date, listing.end_date)
 
-        expect(listing.nights.first.date).to eq(Date.parse(listing.start_date))
-        expect(listing.nights.last.date).to eq(Date.parse(listing.end_date))
+        expect(listing.nights.first.date).to eq(listing.start_date)
+        expect(listing.nights.last.date).to eq(listing.end_date)
         expect(listing.nights.count).to eq(3)
       end
     end

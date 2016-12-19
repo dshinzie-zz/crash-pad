@@ -49,7 +49,7 @@ class Seed
         price: Faker::Number.decimal(3,2),
         accomodation: Faker::Number.number(2),
         city: Faker::Address.city,
-        state: Faker::Address.state)
+        state: Faker::Address.state_abbr)
 
       puts "Listing #{i}: listing for host #{listing.user.first_name} created!"
     end

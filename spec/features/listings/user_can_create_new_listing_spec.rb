@@ -18,6 +18,8 @@ describe "As a logged in user" do
       expect(current_path).to eq(listing_path(Listing.last))
       expect(Listing.last.latitude).to eq(39.7496354)
       expect(Listing.last.longitude).to eq(-105.0001058)
+      expect(Listing.last.state).to eq("CO")
+      expect(Listing.last.city).to eq("Denver")
     end
   end
 

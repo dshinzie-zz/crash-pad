@@ -16,9 +16,18 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
-VCR.configure do |config|
-  config.cassette_library_dir = "spec/vcr_cassettes"
-  config.hook_into :webmock
+# VCR.configure do |config|
+#   config.cassette_library_dir = "spec/vcr_cassettes"
+#   config.hook_into :webmock
+# end
+
+def stub_login_user
+  user = User.create(email: "brad@test.com", password: "password", first_name: "Chase", last_name: "Dun", phone: "7273840", avatar_url: "http://www.aceshowbiz.com/images/photo/drake.jpg")
+  visit "/login"
+  fill_in "Email", with: "brad@test.com"
+  fill_in "Password", with: "password"
+  click_button "Login"
+  user
 end
 
 # Add additional requires below this line. Rails is not loaded until this point!

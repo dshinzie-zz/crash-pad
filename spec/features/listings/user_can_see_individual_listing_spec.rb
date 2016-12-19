@@ -19,3 +19,19 @@ describe 'As a logged-out user' do
     end
   end
 end
+
+describe 'As a logged-in' do
+  context 'when I click take a trip' do
+    it "see all trips" do
+      listings = create_list(:listing, 2)
+
+      stub_login_user
+
+      visit listings_path
+
+      expect(current_path).to eq(listings_path)
+      expect(page).to have_content(listings.first.city)
+      expect(page).to have_content(listings.second.city)
+    end
+  end
+end

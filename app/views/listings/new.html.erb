@@ -1,0 +1,48 @@
+<h2 class="account-header">Create Listing</h2>
+
+<div class="form">
+  <%= form_for @listing do |f| %>
+    <div class="text-input">
+        <%= f.label :city %>
+        <%= f.text_field :city, placeholder: "City" %>
+      <span class="separator"> </span>
+    </div>
+
+    <div class="text-input">
+      <%= f.label :address %>
+      <%= f.text_field :address, placeholder: "Address" %>
+      <span class="separator"> </span>
+    </div>
+
+    <div class="text-input">
+      <%= f.label :description %>
+      <%= f.text_field :description, placeholder: "Description" %>
+      <span class="separator"> </span>
+    </div>
+
+    <div class="text-input">
+      <%= f.label :price %>
+      <%= f.number_field :price, placeholder: "Price" %>
+      <span class="separator"> </span>
+    </div>
+
+    <div class="text-input">
+      <%= f.label :accomodation %>
+      <%= f.number_field :accomodation, placeholder: "Accomodation" %>
+      <span class="separator"> </span>
+    </div>
+
+    <div class="text-input">
+      <%= f.label "Available From" %>
+      <%= f.date_field :start_date, placeholder: "Available From" %>
+
+      <%= f.label "Available To" %>
+      <%= f.date_field :end_date, placeholder: "Available To" %>
+    </div>
+
+    <div class="button-center">
+      <%= f.submit "Create Listing", class: "update-btn" %>
+    </div>
+
+    <% end %>
+</div>

@@ -1,6 +1,63 @@
-<section class="container">
-  <div><%= image_tag(@listing.image_url, class: "listing_single_image") %></div>
-  <p><%= @listing.description %></p>
-  <p><%= number_to_currency(@listing.price, unit_price: "$") %></p>
-  <p><%= @listing.accomodation %></p>
+<% if @listing.image_url %>
+  <div class="listing-crop">
+      <%= image_tag(@listing.image_url, class: "listing-single-image") %>
+  </div>
+<% end %>
+
+ <section class="container-fluid listing-show-container">
+   <div class="col-md-6 listing-details-container">
+     <div class="featured-price-div">
+       <span class="featured-price-show"><%= number_to_currency(@listing.price, unit_price: "$") %></span><span class="address-show"><%= @listing.concat_address %><span>
+     </div>
+    <div>
+      <h2>About This Listing</h2>
+      <p><%= @listing.description %></p>
+      <p>Accomdation: <%= @listing.accomodation %></p>
+    </div>
+  </div>
+
+  <div class="col-md-4 booking-container">
+    <h3>Interest in this listing?</h3>
+    <% if current_user %>
+      <%= button_to "Request to Book", new_user_booking_path(current_user), method: :get, class: "btn btn-primary" %>
+    <% else %>
+      <%= button_to "Request to Book", method: :get, class: "btn btn-primary", disabled: true %>
+    <% end %>
+  </div>
+
+
+  <div class="col-md-6 listing-reviews">
+      <h3>Listing Reviews</h3>
+      <div class="container panel-group">
+        <% @listing.reviews.each do |review| %>
+          <div class="panel panel-default review_tile">
+            <div class="panel-body small">
+              <div class="btn-group pull-right">
+                <%= link_to "Delete Review", [review.listing, review], method: :delete %>
+              </div>
+              <div class="pull-left">
+                <h6>Author: <%= User.find(review.user_id).first_name %></h6>
+                <p><%= review.body %></p>
+                <p class="small">Created: <%= distance_of_time_in_words_to_now(review.created_at) %> ago</p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <%= form_for ([@listing, @listing.reviews.build]) do |f| %>
+              <div class="form-group text-left">
+                <%= f.label :body, 'Review' %>
+                <%= f.text_area :body, :class => "form-control" %>
+              </div>
+              <div class=btn-group>
+                <%= f.submit "Add Review", :class => "btn btn-primary btn-sm"%>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
 </section>

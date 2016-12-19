@@ -1,19 +1,30 @@
-require 'securerandom'
-
 class User < ActiveRecord::Base
+  include ApiKey
+
   has_many :listings
+  has_many :bookings
+  has_many :reviews
   has_secure_password
-  before_create :set_api_key
+
+  before_create :get_api_key
+  after_create :generate_slug, :set_default_profile
+
   validates :email, presence: true, uniqueness: true
+  validates :slug, uniqueness: true
+  validates_presence_of :first_name, :last_name, :phone
+
+  def generate_slug
+    self.update(slug: email.parameterize.gsub("-", ""))
+  end
 
   private
 
-  def set_api_key
-    return if api_key.present?
-    self.api_key = generate_api_key
+  def get_api_key
+    self.api_key = ApiKey.generate
   end
 
-  def generate_api_key
-    SecureRandom.uuid.gsub(/\-/,'')
+  def set_default_profile
+    self.update(avatar_url: ActionController::Base.helpers.image_path("stock.jpg"))
   end
+
 end

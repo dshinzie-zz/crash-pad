@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161219233907) do
+ActiveRecord::Schema.define(version: 20161220015123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(version: 20161219233907) do
     t.integer  "listing_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "booking_id"
+    t.index ["booking_id"], name: "index_nights_on_booking_id", using: :btree
     t.index ["listing_id"], name: "index_nights_on_listing_id", using: :btree
   end
 
@@ -80,6 +82,7 @@ ActiveRecord::Schema.define(version: 20161219233907) do
 
   add_foreign_key "bookings", "users"
   add_foreign_key "listings", "users"
+  add_foreign_key "nights", "bookings"
   add_foreign_key "nights", "listings"
   add_foreign_key "reviews", "listings"
   add_foreign_key "reviews", "users"

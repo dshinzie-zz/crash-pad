@@ -14,4 +14,8 @@ describe Night do
     it { should belong_to(:listing) }
     # it { should belong_to(:trip) }
   end
+
+  describe "test" do
+    pending
+  end
 end

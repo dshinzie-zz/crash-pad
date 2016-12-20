@@ -5,7 +5,7 @@ class Listing < ApplicationRecord
 
   validates :description, :price, :accomodation, :start_date, :end_date, presence: true
 
-  after_create :set_default_photo
+  after_create :set_default_photo, :create_nights
 
   def self.search(argument)
     return Listing.all if argument.nil?
@@ -34,8 +34,9 @@ class Listing < ApplicationRecord
     self.update(image_url: ActionController::Base.helpers.image_path("apt#{rand(1..5)}.jpg"))
   end
 
-  def create_nights(start_date, end_date)
-    start_date.upto(end_date) do |date|
+  def create_nights
+    self.start_date.upto(self.end_date) do |date|
+      require "pry"; binding.pry
       Night.create(date: date, listing: self)
     end
   end

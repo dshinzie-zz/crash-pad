@@ -9,13 +9,13 @@ class Booking < ApplicationRecord
         night.update(booking: self)
       end
     else
-      flash[:warning] = "Invalid booking."
+      "Invalid booking"
     end
   end
 
   def valid_booking?(start_date, end_date, listing)
     start_date.upto(end_date) do |date|
-      !Night.find_by(date: date, listing: listing)
+      return false unless Night.find_by(date: date, listing: listing)
     end
   end
 

@@ -21,7 +21,6 @@ class ListingsController < ApplicationController
 
     if @listing.save
       @listing.update(location.attributes_for_update)
-      @listing.create_nights(@listing.start_date, @listing.end_date)
       redirect_to listing_path(@listing)
     else
       render :new

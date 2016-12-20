@@ -5,6 +5,7 @@ RSpec.describe Booking, type: :model do
 
   context 'relationships' do
     it { should belong_to(:user) }
+    it { should have_many(:nights) }
   end
 
   context '#book_nights' do
@@ -45,7 +46,19 @@ RSpec.describe Booking, type: :model do
               credit_card_number: '5678',
               listing: listing
             )
+
       expect(booking2.id).to eq(nil)
+    end
+    it "prevents a user from booking their own listing" do
+      booking = Booking.create(
+              user: listing.user,
+              start_date: '1/1/2017',
+              end_date: '5/1/2017',
+              credit_card_number: '1234',
+              listing: listing
+            )
+
+        expect(booking.id).to eq(nil)
     end
   end
 end

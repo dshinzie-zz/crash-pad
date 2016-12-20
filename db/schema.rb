@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20161219210016) do
     t.datetime "updated_at",   null: false
     t.citext   "city"
     t.citext   "state"
+    t.text     "address"
     t.index ["user_id"], name: "index_listings_on_user_id", using: :btree
   end
 
@@ -47,6 +48,16 @@ ActiveRecord::Schema.define(version: 20161219210016) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["listing_id"], name: "index_nights_on_listing_id", using: :btree
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "listing_id"
+    t.integer  "score",      default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["listing_id"], name: "index_ratings_on_listing_id", using: :btree
+    t.index ["user_id"], name: "index_ratings_on_user_id", using: :btree
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -79,6 +90,8 @@ ActiveRecord::Schema.define(version: 20161219210016) do
   add_foreign_key "bookings", "users"
   add_foreign_key "listings", "users"
   add_foreign_key "nights", "listings"
+  add_foreign_key "ratings", "listings"
+  add_foreign_key "ratings", "users"
   add_foreign_key "reviews", "listings"
   add_foreign_key "reviews", "users"
 end

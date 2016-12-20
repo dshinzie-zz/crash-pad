@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :listings
   has_many :bookings
   has_many :reviews
+  has_many :ratings, dependent: :destroy
   has_secure_password
 
   before_create :get_api_key

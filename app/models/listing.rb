@@ -36,7 +36,6 @@ class Listing < ApplicationRecord
 
   def create_nights
     self.start_date.upto(self.end_date) do |date|
-      require "pry"; binding.pry
       Night.create(date: date, listing: self)
     end
   end

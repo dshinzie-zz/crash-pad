@@ -14,10 +14,7 @@ class Booking < ApplicationRecord
   end
 
   def valid_booking?(start_date, end_date, listing)
-
     start_date.upto(end_date) do |date|
-      require "pry"; binding.pry
-
       !Night.find_by(date: date, listing: listing)
     end
   end

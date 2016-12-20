@@ -25,7 +25,26 @@ RSpec.describe Booking, type: :model do
               credit_card_number: '1234',
               listing: listing
             )
+
       expect(booking.save).to eq(nil)
+    end
+    xit "prevents a user from double booking" do
+      booking1 = Booking.create(
+              user: create(:user),
+              start_date: '1/1/2017',
+              end_date: '5/1/2017',
+              credit_card_number: '1234',
+              listing: listing
+            )
+      booking2 = Booking.new(
+              user: create(:user),
+              start_date: '1/1/2017',
+              end_date: '5/1/2017',
+              credit_card_number: '1234',
+              listing: listing
+            )
+
+      expect(booking2.save).to eq(nil)
     end
   end
 end

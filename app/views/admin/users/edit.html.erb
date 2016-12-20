@@ -38,10 +38,13 @@
     </div>
 
     <div class="text-input">
-      <%= f.label :status %>
-      <%= f.text_field :status %>
+      <%= f.radio_button(:status, "online") %>
+      <%= label(:status, "Online") %>
+      <%= f.radio_button(:status, "offline") %>
+      <%= label(:status, "Offline") %>
       <span class="separator"> </span>
     </div>
+
 
     <div class="button-center">
       <%= f.submit "Update Account", class: "update-btn" %>

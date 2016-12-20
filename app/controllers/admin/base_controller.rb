@@ -4,7 +4,7 @@ class Admin::BaseController < ApplicationController
 
 
   def require_admin
-    render :text => 'Not Found', :status => '404' unless is_admin?
+    render plain: 'Not Found', status: '404' unless is_admin?
   end
 
   def user_status(user_id)

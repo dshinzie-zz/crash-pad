@@ -1,19 +1,19 @@
 class Admin::ListingsController < Admin::BaseController
 
   def index
-    @listings = Listing.unscoped.all
+    @listings = Listing.all
   end
 
   def show
-    @listing = Listing.unscoped.find(params[:id])
+    @listing = Listing.find(params[:id])
   end
 
   def edit
-    @listing = Listing.unscoped.find(params[:id])
+    @listing = Listing.find(params[:id])
   end
 
   def update
-    @listing = Listing.unscoped.find(params[:id])
+    @listing = Listing.find(params[:id])
     if @listing.update(listing_params)
       flash[:success] = "Listing successfully updated!"
       redirect_to admin_listing_path(@listing)

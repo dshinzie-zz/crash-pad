@@ -478,7 +478,6 @@ $darkblue: #2C3E50;
 
 .col-1 { width: 33.333%; padding: 0 15px; float: left; }
 .col-2 { width: 66.666%; padding: 0 15px; float: left; }
-.col-3 { width: 100%; padding: 0 15px; float: left; }
 
 .wrapper {
   display: flex;
@@ -493,29 +492,9 @@ $darkblue: #2C3E50;
 }
 
 .user-item {
-  background: #fff;
   overflow: hidden;
   border-radius: 10px;
-  margin-bottom: 30px;
-  &_photo {
-    overflow: hidden;
-    position: relative;
-    &:after {
-      content: '';
-      width: 150px;
-      height: 150px;
-      display: block;
-      position: absolute;
-      background: rgba(255, 255, 255, 0.5);
-      z-index: 20;
-      top: -80px;
-      right: -80px;
-      transform: rotate(45deg);
-    }
-    img {
-      max-width: 100%;
-    }
-  }
+
   &_info {
     padding: 15px;
     text-align: center;
@@ -528,27 +507,6 @@ $darkblue: #2C3E50;
     }
     .sub {
       color: #AFAFAF;
-    }
-    .controls {
-      padding-top: 15px;
-      a {
-        display: inline-block;
-        width: 40px;
-        height: 40px;
-        border-radius: 25px;
-        background: $lightblue;
-        color: rgba(255, 255, 255, 0.6);
-        text-decoration: none;
-        line-height: 40px;
-        font-size: 16px;
-        text-align: center;
-        margin: 0 5px;
-        transition: background .3s linear, transform .3s ease-in-out;
-        &:hover {
-          background: darken($lightblue, 20%);
-          transform: scale(1.2);
-        }
-      }
     }
   }
 }
@@ -571,56 +529,9 @@ $darkblue: #2C3E50;
     width: 100%;
     letter-spacing: 1px;
     color: rgba(255, 255, 255, 0.6);
-    font-weight: bold;
+    // font-weight: bold;
     border-radius: 10px 10px 0 0;
-    i {
-      margin-right: 10px;
-    }
-  }
-  .footer {
-    height: 60px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: $blue;
-    text-align: center;
-    padding: 10px 15px;
-    border-radius: 0 0 10px 10px;
-    input[type="text"] {
-      display: inline-block;
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 5px;
-      vertical-align: middle;
-      border: 0;
-      height: 40px;
-      padding: 0 15px;
-      margin: 0 5px;
-      width: 100%;
-      max-width: 250px;
-      outline: none;
-      transition: all .1s linear;
-      color: gray;
-      &:focus {
-        background: #fff;
-      }
-    }
-    button {
-      background: $lightblue;
-      border: 0;
-      display: inline-block;
-      vertical-align: middle;
-      color: rgba(255, 255, 255, 0.6);
-      width: 40px;
-      height: 40px;
-      border-radius: 20px;
-      cursor: pointer;
-      transition: background .2s linear;
-      outline: none;
-      &:hover {
-        background: darken($lightblue, 20%);
-      }
-    }
+    font-size: 20px;
   }
 }
 .chat_inner {
@@ -629,25 +540,13 @@ $darkblue: #2C3E50;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
-    .photo {
-      width: 40px;
-      height: 40px;
-      border-radius: 20px;
-      overflow: hidden;
-      margin-right: 10px;
-      img {
-        width: 40px;
-        height: 40px;
-        display: block;
-        object-fit: cover;
-      }
-    }
     .message {
         padding: 12px 20px;
         background-color: #ECECEC;
         border-radius: 5px;
         color: #808080;
         letter-spacing: 1px;
+        width: 100%;
     }
     &.right {
        justify-content: flex-end;

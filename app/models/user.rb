@@ -6,8 +6,10 @@ class User < ActiveRecord::Base
   has_many :reviews
   has_many :ratings, dependent: :destroy
   has_secure_password
+
   before_create :get_api_key
-  after_create :generate_slug
+  after_create :generate_slug, :set_default_profile
+
   validates :email, presence: true, uniqueness: true
   validates :slug, uniqueness: true
   validates_presence_of :first_name, :last_name, :phone
@@ -20,6 +22,10 @@ class User < ActiveRecord::Base
 
   def get_api_key
     self.api_key = ApiKey.generate
+  end
+
+  def set_default_profile
+    self.update(avatar_url: ActionController::Base.helpers.image_path("stock.jpg"))
   end
 
 end

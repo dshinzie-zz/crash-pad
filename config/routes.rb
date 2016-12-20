@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   post '/users/verify'
   post '/users/resend'
   resources :users, only: [:new, :create, :edit, :update, :show] do
-    resources :bookings, only: [:new, :create, :show]
+    resources :bookings, only: [:index, :show]
   end
 
   get "/login", to: "sessions#new"
@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   end
 
   resources :listings, only: [:index, :show, :new, :create] do
+    resources :bookings, only: [:new, :create]
     resources :reviews, only: [:create, :edit, :update, :destroy]
   end
 

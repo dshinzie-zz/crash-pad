@@ -11,7 +11,8 @@ class BookingsController < ApplicationController
       @booking.book_nights
       redirect_to user_booking_path(@booking.user, @booking)
     else
-      render :new
+      flash[:danger] = "Booking failed!"
+      redirect_to new_listing_booking_path(@booking.listing)
     end
   end
 
@@ -19,7 +20,7 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
   end
 
-  private 
+  private
 
   def booking_params
     params.require(:booking).permit(:start_date, :end_date, :credit_card_number)

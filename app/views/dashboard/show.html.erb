@@ -1,14 +1,62 @@
 <%= render partial: "layouts/dashboard_navbar" %>
-<br>
 
-<% if current_user.avatar_url %>
-  <h2><%= image_tag(current_user.avatar_url) %></h2>
-<% end %>
-<h2><%= current_user.first_name %></h2>
 
-<div class="account-details">
-  <%= current_user.email %>
-  <%= current_user.first_name %>
-  <%= current_user.last_name %>
-  <%= current_user.phone %>
+<div class="wrapper">
+  <div class="wrapper_container">
+    <div class="row">
+      <div class="col-1">
+        <div class="user-item">
+          <div class="user-item_photo">
+            <%= image_tag(current_user.avatar_url) %>
+          </div>
+          <div class="user-item_info">
+            <p class="name"><%= current_user.first_name %> <%= current_user.last_name %></p>
+            <p class="sub"><%= current_user.email %></p>
+            <p class="sub"><%= current_user.phone %></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-2">
+        <div class="overview-container">
+
+          <div class="chat">
+            <div class="head">Your Listings</div>
+            <div class="chat_inner">
+              <div class="chat_inner-item">
+                <div class="message">
+                <% if current_user.listings.nil? %>
+                  <p>You have no listings</p>
+                <% else %>
+                <% current_user.listings.each do |listing| %>
+                  <p><%= link_to listing.address, listing_path(listing) %></p>
+                  <% end %>
+                <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="chat">
+            <div class="head">Unread Messages</div>
+            <div class="chat_inner">
+              <div class="chat_inner-item">
+                <div class="message">You have no unread messages.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="chat">
+            <div class="head">Past Bookings</div>
+            <div class="chat_inner">
+              <div class="chat_inner-item">
+                <div class="message">You have not booked anything.</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

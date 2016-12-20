@@ -10,16 +10,14 @@ class Listing < ApplicationRecord
   after_create :set_default_photo, :create_nights
 
   def self.search(location, start_date, end_date)
-
-    if (location && start_date.empty? ) || (location && end_date.empty?)
+    if location.nil?
+      return Listing.joins(:user)
+    elsif (location && start_date.empty? ) || (location && end_date.empty?)
       return get_listing_by_location(location)
-
     elsif (location.empty? && start_date && end_date)
       return self.get_listing_by_date(start_date, end_date)
-
     elsif (location && start_date && end_date)
       return get_listing_by_location(location).get_listing_by_date(start_date, end_date)
-
     else
       return Listing.all
     end

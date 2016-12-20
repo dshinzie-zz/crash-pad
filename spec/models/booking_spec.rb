@@ -18,15 +18,14 @@ RSpec.describe Booking, type: :model do
       expect(booking.nights.last.listing).to_not eq(nil)
     end
     it "returns a warning for a booking outside the valid range" do
-      booking = create(
-        :booking,
-        start_date: '1/1/2017',
-        end_date: '6/1/2017',
-        listing: listing
-        )
-
-      require "pry"; binding.pry
-      expect(booking.valid_booking?).to eq('ActiveRecord::Rollback: Invalid Booking')
+      booking = Booking.new(
+              user: create(:user),
+              start_date: '1/1/2017',
+              end_date: '6/1/2017',
+              credit_card_number: '1234',
+              listing: listing
+            )
+      expect(booking.save).to eq(nil)
     end
   end
 end

@@ -17,3 +17,15 @@ describe "A logged in admin" do
     end
   end
 end
+describe "a logged in user" do
+  context "without admin privilege" do
+    it "cannot see admin listing info index" do
+      user = stub_login_user
+
+      visit admin_listings_path
+
+      expect(page).to have_http_status(404)
+      expect(page).to have_content("Not Found")
+    end
+  end
+end

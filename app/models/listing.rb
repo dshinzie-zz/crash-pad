@@ -3,9 +3,7 @@ class Listing < ApplicationRecord
   has_many :reviews, dependent: :destroy
 
   validates :description, :price, :accomodation, presence: true
-
-  # after_create :add_nights
-
+  
   attr_accessor :address, :start_date, :end_date
 
   def self.search(argument)

@@ -14,7 +14,16 @@ describe "A logged in admin" do
       expect(current_path).to eq(admin_users_path)
       expect(page).to have_content("#{first_user.email}")
       expect(page).to have_content("#{third_user.email}")
-
     end
+  end
+end
+describe "a logged in user" do
+  it "cannot view admin user index" do
+    user = stub_login_user
+
+    visit admin_users_path
+
+    expect(page).to have_http_status(404)
+    expect(page).to have_content("Not Found")
   end
 end

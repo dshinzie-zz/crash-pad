@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   include ApiKey
 
+  default_scope { where(status: "online") }
+
   has_many :listings
   has_many :bookings
   has_many :reviews

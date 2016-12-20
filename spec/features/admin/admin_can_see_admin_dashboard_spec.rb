@@ -12,3 +12,15 @@ describe "As a not logged in admin" do
     end
   end
 end
+describe "As a not logged in user" do
+  context "when I log in as user" do
+    it "should not show me the admin dashboard" do
+      user = stub_login_user
+
+      visit admin_dashboard_path
+
+      expect(page).to have_http_status(404)
+      expect(page).to have_content("Not Found")
+    end
+  end
+end

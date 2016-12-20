@@ -1,0 +1,52 @@
+<h2 class="account-header">Edit Listing</h2>
+
+<div class="form">
+  <%= form_for [:admin, @listing] do |f| %>
+    <div class="text-input">
+      <%= f.label :address %>
+      <%= f.text_field :address %>
+      <span class="separator"> </span>
+    </div>
+
+    <div class="text-input">
+        <%= f.label :city %>
+        <%= f.text_field :city %>
+      <span class="separator"> </span>
+    </div>
+
+    <div class="text-input">
+        <%= f.label :state %>
+        <%= f.text_field :state %>
+      <span class="separator"> </span>
+    </div>
+
+    <div class="text-input">
+      <%= f.label :description %>
+      <%= f.text_field :description %>
+      <span class="separator"> </span>
+    </div>
+
+    <div class="text-input">
+      <%= f.label :price %>
+      <%= f.number_field :price %>
+      <span class="separator"> </span>
+    </div>
+
+    <div class="text-input">
+      <%= f.label :accomodation %>
+      <%= f.number_field :accomodation %>
+      <span class="separator"> </span>
+    </div>
+
+    <div class="text-input">
+      <%= f.label :image_url %>
+      <%= f.text_field :image_url %>
+      <span class="separator"> </span>
+    </div>
+
+    <div class="button-center">
+      <%= f.submit "Edit Listing", class: "update-btn" %>
+    </div>
+
+    <% end %>
+</div>

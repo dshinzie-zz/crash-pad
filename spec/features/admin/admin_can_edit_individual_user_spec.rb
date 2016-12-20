@@ -21,3 +21,18 @@ describe "A logged in admin" do
     end
   end
 end
+describe "A logged in user" do
+  context "without admin privilege" do
+    it "cannot edit a user" do
+      create_list :user, 1
+      user = User.first
+
+      user = stub_login_user
+
+      visit edit_admin_user_path(user)
+
+      expect(page).to have_http_status(404)
+      expect(page).to have_content("Not Found")
+    end
+  end
+end

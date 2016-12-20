@@ -15,6 +15,7 @@
       <p>Accomodates: <%= @listing.accomodation %></p>
       <p>Host ID: <%= @listing.user_id %></p>
     </div>
+    <%= link_to "Edit Listing", edit_admin_listing_path(@listing), class: "btn btn-warning" %>
     <%= link_to "Delete Listing", admin_listing_path(@listing), class: "btn btn-danger", method: :delete %>
   </div>
 

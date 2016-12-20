@@ -1,18 +1,18 @@
-class Admin::UsersController < ApplicationController
+class Admin::UsersController < Admin::BaseController
   def index
-    @users = User.all
+    @users = User.unscoped.all
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.unscoped.find(params[:id])
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = User.unscoped.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = User.unscoped.find(params[:id])
     if @user.update(user_params)
       flash[:success] = "Account successfully updated!"
       redirect_to admin_user_path(@user)

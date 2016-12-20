@@ -23,3 +23,18 @@ describe "A logged in admin" do
     end
   end
 end
+describe "A logged in user" do
+  context "without admin privilege" do
+    it "cannot see admin listing information" do
+      create_list :listing, 1
+      listing = Listing.first
+
+      user = stub_login_user
+
+      visit admin_listing_path(listing)
+
+      expect(page).to have_http_status(404)
+      expect(page).to have_content("Not Found")
+    end
+  end
+end

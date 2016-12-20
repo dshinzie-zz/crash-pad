@@ -1,13 +1,12 @@
 class Listing < ApplicationRecord
   belongs_to :user
   has_many :reviews, dependent: :destroy
+  has_many :nights
   has_many :ratings, dependent: :destroy
 
-  validates :description, :price, :accomodation, presence: true
+  validates :description, :price, :accomodation, :start_date, :end_date, presence: true
 
-  attr_accessor :start_date, :end_date
-
-  after_create :set_default_photo
+  after_create :set_default_photo, :create_nights
 
   def self.search(argument)
     return Listing.all if get_listing_collection(argument).class == Hash
@@ -55,4 +54,11 @@ class Listing < ApplicationRecord
   def set_default_photo
     self.update(image_url: ActionController::Base.helpers.image_path("apt#{rand(1..5)}.jpg"))
   end
+
+  def create_nights
+    self.start_date.upto(self.end_date) do |date|
+      Night.create(date: date, listing: self)
+    end
+  end
+
 end

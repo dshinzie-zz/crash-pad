@@ -19,7 +19,7 @@
   <div class="col-md-4 booking-container">
     <h3>Interest in this listing?</h3>
     <% if current_user %>
-      <%= button_to "Request to Book", new_user_booking_path(current_user), method: :get, class: "btn btn-primary" %>
+      <%= button_to "Request to Book", new_listing_booking_path(@listing, current_user), method: :get, class: "btn btn-primary" %>
     <% else %>
       <%= button_to "Request to Book", method: :get, class: "btn btn-primary", disabled: true %>
     <% end %>

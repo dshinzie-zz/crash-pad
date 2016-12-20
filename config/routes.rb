@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:new, :create, :edit, :update, :show] do
-    resources :bookings, only: [:new, :create, :show]
+    resources :bookings, only: [:index, :show]
     get '/reset_password', to: 'reset_password#edit', as: 'reset_password'
     patch '/reset_password', to: 'reset_password#update'
   end
@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   end
 
   resources :listings, only: [:index, :show, :new, :create] do
+    resources :bookings, only: [:new, :create]
     resources :reviews, only: [:create, :edit, :update, :destroy]
     resources :ratings, only: [:create]
   end

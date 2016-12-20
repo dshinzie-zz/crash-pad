@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe "As a logged in user" do
+  let!(:dates) { { start_date: '1/1/2017', end_date: '5/1/2017' } }
   context "When I create a valid lisiting" do
     it "stores lat and long" do
       user = stub_login_user
@@ -12,6 +13,8 @@ describe "As a logged in user" do
       fill_in "listing[description]", with: "Test"
       fill_in "listing[price]", with: 99.00
       fill_in "listing[accomodation]", with: 2
+      fill_in "listing[start_date]", with: dates[:start_date]
+      fill_in "listing[end_date]", with: dates[:end_date]
 
       click_button "Create Listing"
 
@@ -34,6 +37,8 @@ describe "As a logged in user" do
       fill_in "listing[description]", with: "Test"
       fill_in "listing[price]", with: 99.00
       fill_in "listing[accomodation]", with: 2
+      fill_in "listing[start_date]", with: dates[:start_date]
+      fill_in "listing[end_date]", with: dates[:end_date]
 
       click_button "Create Listing"
 
@@ -52,6 +57,8 @@ describe "As a logged in user" do
       fill_in "listing[description]", with: "Test"
       fill_in "listing[price]", with: 99.00
       fill_in "listing[accomodation]", with: 2
+      fill_in "listing[start_date]", with: dates[:start_date]
+      fill_in "listing[end_date]", with: dates[:end_date]
 
       click_button "Create Listing"
 

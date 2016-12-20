@@ -38,9 +38,9 @@ class ListingsController < ApplicationController
       location.class == GeocodeLocation
     end
 
-  def listing_params
-    params.require(:listing).permit(:city, :state, :address, :description, :price, :accomodation)
-  end
+    def listing_params
+      params.require(:listing).permit(:city, :state, :address, :description, :price, :accomodation, :start_date, :end_date)
+    end
 
   def listing_address
     params.require(:listing).permit(:address, :city, :state).values.join(" ")

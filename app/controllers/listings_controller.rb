@@ -1,7 +1,7 @@
 class ListingsController < ApplicationController
 
   def index
-    @listings = Listing.search(params[:q]).joins(:user)
+    @listings = Listing.search(params[:q], params[:checkin], params[:checkout])#.joins(:user)
   end
 
   def show

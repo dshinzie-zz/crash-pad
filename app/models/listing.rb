@@ -8,24 +8,42 @@ class Listing < ApplicationRecord
 
   after_create :set_default_photo, :create_nights
 
-  def self.search(argument)
-    return Listing.all if get_listing_collection(argument).class == Hash
-    get_listing_collection(argument)
+  def self.search(location, start_date, end_date)
+
+    if (location && start_date.empty? ) || (location && end_date.empty?)
+      return get_listing_by_location(location)
+
+    elsif (location.empty? && start_date && end_date)
+      return self.get_listing_by_date(start_date, end_date)
+
+    elsif (location && start_date && end_date)
+      return get_listing_by_location(location).get_listing_by_date(start_date, end_date)
+
+    else
+      return Listing.all
+    end
+
   end
 
-  def self.get_listing_collection(argument)
-    return Listing.all if argument.nil?
+  def self.get_listing_by_location(location)
+    return Listing.all if location.nil?
 
-    location = GeocodeLocation.get_location(argument)
-    return {} if location == :bad_address
+    geocode_location = GeocodeLocation.get_location(location)
+    return {} if geocode_location == :bad_address
 
-    if !location.address.nil?
-      where(address: location.address)
-    elsif !location.city.nil?
-      where(city: location.city)
-    elsif !location.state.nil?
-      where(state: location.state)
+    if !geocode_location.address.nil?
+      where(address: geocode_location.address)
+    elsif !geocode_location.city.nil?
+      where(city: geocode_location.city)
+    elsif !geocode_location.state.nil?
+      where(state: geocode_location.state)
     end
+  end
+
+  def self.get_listing_by_date(start_date, end_date)
+    joins(:nights)
+    .where("nights.date >= ? AND nights.date <= ?", start_date, end_date)
+    .distinct
   end
 
   def concat_address

@@ -1,16 +1,18 @@
 class BookingsController < ApplicationController
 
   def new
+    @listing = Listing.find(params[:listing_id])
     @booking = Booking.new
   end
 
   def create
-    @booking = Booking.new(booking_params)
-    @booking.user = User.find(params[:user_id])
+    @booking = current_user.bookings.new(all_params)
     if @booking.save
+      @booking.book_nights
       redirect_to user_booking_path(@booking.user, @booking)
     else
-      render :new
+      flash[:danger] = "Booking failed!"
+      redirect_to new_listing_booking_path(@booking.listing)
     end
   end
 
@@ -22,6 +24,10 @@ class BookingsController < ApplicationController
 
   def booking_params
     params.require(:booking).permit(:start_date, :end_date, :credit_card_number)
+  end
+
+  def all_params
+    booking_params.merge({listing: Listing.find(params[:listing_id])})
   end
 
 end

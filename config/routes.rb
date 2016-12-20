@@ -1,11 +1,20 @@
 Rails.application.routes.draw do
   root 'home#index'
 
-  get '/users/verify', to: 'users#show_verify', as: 'verify'
-  post '/users/verify'
-  post '/users/resend'
+  get '/users/verify', to: 'verify#show_verify', as: 'verify'
+  post '/users/verify', to: 'verify#verify'
+  post '/users/resend', to: 'verify#resend'
+
+  namespace :admin do
+    get '/dashboard', to: 'dashboard#show'
+    resources :users, only: [:index, :show, :edit, :update]
+    resources :listings, only: [:index, :show, :edit, :update, :destroy]
+  end
+
   resources :users, only: [:new, :create, :edit, :update, :show] do
-    resources :bookings, only: [:new, :create, :show]
+    resources :bookings, only: [:index, :show]
+    get '/reset_password', to: 'reset_password#edit', as: 'reset_password'
+    patch '/reset_password', to: 'reset_password#update'
   end
 
   get "/login", to: "sessions#new"
@@ -22,9 +31,10 @@ Rails.application.routes.draw do
   end
 
   resources :listings, only: [:index, :show, :new, :create] do
+    resources :bookings, only: [:new, :create]
     resources :reviews, only: [:create, :edit, :update, :destroy]
+    resources :ratings, only: [:create]
   end
-
 
   get '/dashboard', to: 'dashboard#show', path: ':user'
 end

@@ -12,7 +12,7 @@ describe "A logged in admin" do
       visit edit_admin_user_path(first_user)
 
       fill_in "user_first_name", :with => "brad"
-      fill_in "user_status", :with => "offline"
+      choose("user_status_offline")
       click_on "Update Account"
 
       expect(current_path).to eq(admin_user_path(first_user))

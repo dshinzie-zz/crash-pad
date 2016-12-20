@@ -10,6 +10,11 @@ class Listing < ApplicationRecord
   after_create :set_default_photo
 
   def self.search(argument)
+    return Listing.all if get_listing_collection(argument).class == Hash
+    get_listing_collection(argument)
+  end
+
+  def self.get_listing_collection(argument)
     return Listing.all if argument.nil?
 
     location = GeocodeLocation.get_location(argument)

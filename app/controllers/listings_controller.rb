@@ -1,7 +1,11 @@
 class ListingsController < ApplicationController
 
   def index
-    @listings = Listing.search(params[:q])
+    if current_user
+      @listings = Listing.search(params[:q]).joins(:user)
+    else
+      @listings = Listing.search(params[:q])
+    end
   end
 
   def show
@@ -38,12 +42,12 @@ class ListingsController < ApplicationController
       location.class == GeocodeLocation
     end
 
-    def listing_params
-      params.require(:listing).permit(:city, :state, :address, :description, :price, :accomodation)
-    end
+  def listing_params
+    params.require(:listing).permit(:city, :state, :address, :description, :price, :accomodation)
+  end
 
-    def listing_address
-      params.require(:listing).permit(:address, :city, :state).values.join(" ")
-    end
+  def listing_address
+    params.require(:listing).permit(:address, :city, :state).values.join(" ")
+  end
 
 end

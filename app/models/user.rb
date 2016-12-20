@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   include ApiKey
 
+  default_scope { where(status: "online") }
+
   has_many :listings
   has_many :bookings
   has_many :reviews
@@ -13,6 +15,9 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true
   validates :slug, uniqueness: true
   validates_presence_of :first_name, :last_name, :phone
+
+  enum role: [ :user, :admin ]
+  enum status: [ :online, :offline ]
 
   def generate_slug
     self.update(slug: email.parameterize.gsub("-", ""))

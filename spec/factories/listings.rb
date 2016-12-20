@@ -7,6 +7,8 @@ FactoryGirl.define do
     longitude 1.5
     price 1.5
     accomodation 1
+    city "MyText"
+    state "MyText"
   end
   sequence :description do |n|
     "Description #{n}"

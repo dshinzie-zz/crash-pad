@@ -1,0 +1,36 @@
+<div class="container" id="need-space">
+  <div class="row">
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-10">
+    <table style="width: auto;" data-toggle="table">
+      <thead>
+        <tr>
+          <th style="width: 10%">
+          <th data-sortable="true">User ID</th>
+          <th data-sortable="true">Email</th>
+          <th data-sortable="true">Phone</th>
+          <th data-sortable="true">Last Name</th>
+          <th data-sortable="true">First Name</th>
+          <th data-sortable="true">Status</th>
+        </tr>
+      </thead>
+
+     <tbody>
+       <% @users.each do |user| %>
+        <tr class="user-<%=user.id%>">
+          <td><a href='/admin/users/<%=user.id%>'><span class="glyphicon glyphicon-cog" style="color:grey"></span></a></td>
+          <td><%= user.id %></td>
+          <td><%= user.email %></td>
+          <td><%= user.phone %></td>
+          <td><%= user.last_name %></td>
+          <td><%= user.first_name %></td>
+          <td><%= user.status %></td>
+        </tr>
+       <% end %>
+      </tbody>
+     </table>
+    </div>
+    <div class="col-sm-1">
+    </div>
+  </div>

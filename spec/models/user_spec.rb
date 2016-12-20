@@ -43,4 +43,15 @@ RSpec.describe User, type: :model do
       expect(valid_user.api_key).to_not eq(nil)
     end
   end
+  context "default user is online" do
+    it "and can be taken offline" do
+      user = User.create(email: "real@email.com", password: "pass", first_name: "chase", last_name: "dun", phone: "7273840")
+
+      expect(user.status).to eq("online")
+
+      user.offline!
+
+      expect(user.status).to eq("offline")
+    end
+  end
 end

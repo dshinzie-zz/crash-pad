@@ -1,7 +1,7 @@
 class ListingsController < ApplicationController
 
   def index
-    @listings = Listing.search(params[:q])
+    @listings = Listing.search(params[:q]).joins(:user)
   end
 
   def show
@@ -42,8 +42,8 @@ class ListingsController < ApplicationController
       params.require(:listing).permit(:city, :state, :address, :description, :price, :accomodation, :start_date, :end_date)
     end
 
-    def listing_address
-      params.require(:listing).permit(:address, :city, :state).values.join(" ")
-    end
+  def listing_address
+    params.require(:listing).permit(:address, :city, :state).values.join(" ")
+  end
 
 end

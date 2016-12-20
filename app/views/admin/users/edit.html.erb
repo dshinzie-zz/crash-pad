@@ -1,0 +1,53 @@
+<h2 class="account-header">Update Account</h2>
+<div class="form">
+  <%= form_for [:admin, @user] do |f| %>
+    <div class="text-input">
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+      <span class="separator"> </span>
+    </div>
+
+    <div class="text-input">
+      <%= f.label :phone %>
+      <%= f.text_field :phone %>
+      <span class="separator"> </span>
+    </div>
+
+    <div class="text-input">
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name %>
+      <span class="separator"> </span>
+    </div>
+
+    <div class="text-input">
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name %>
+      <span class="separator"> </span>
+    </div>
+
+    <div class="text-input">
+      <%= f.label :avatar_url %>
+      <%= f.text_field :avatar_url %>
+      <span class="separator"> </span>
+    </div>
+
+    <div class="text-input">
+      <%= f.label :phone %>
+      <%= f.text_field :phone %>
+      <span class="separator"> </span>
+    </div>
+
+    <div class="text-input">
+      <%= f.radio_button(:status, "online") %>
+      <%= label(:status, "Online") %>
+      <%= f.radio_button(:status, "offline") %>
+      <%= label(:status, "Offline") %>
+      <span class="separator"> </span>
+    </div>
+
+    <div class="button-center">
+      <%= f.submit "Update Account", class: "update-btn" %>
+    </div>
+
+    <% end %>
+</div>

@@ -1,11 +1,7 @@
 class ListingsController < ApplicationController
 
   def index
-    if current_user
-      @listings = Listing.search(params[:q]).joins(:user)
-    else
-      @listings = Listing.search(params[:q])
-    end
+    @listings = Listing.search(params[:q]).joins(:user)
   end
 
   def show

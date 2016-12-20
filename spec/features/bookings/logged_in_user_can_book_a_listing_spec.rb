@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'As a logged in user' do
-  let!(:listings) { create_list(:listing, 2) }
+  let!(:listing) { create(:listing, start_date: "01/02/2017", end_date: "01/03/2017") }
   let(:user) { create(:user) }
 
   context 'when I book a listing' do
@@ -15,7 +15,7 @@ describe 'As a logged in user' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
       visit listings_path
-      within(".listing-#{listings.first.id}") do
+      within(".listing-#{listing.id}") do
         click_on "Checkout listing"
       end
 
@@ -27,8 +27,8 @@ describe 'As a logged in user' do
       click_on "Submit Request"
 
       expect(current_path).to eq(user_booking_path(user, Booking.first))
-      expect(page).to have_content(booking.start_date)
-      expect(page).to have_content(booking.end_date)
+      expect(page).to have_content(booking.start_date.strftime("%d/%m/%Y"))
+      expect(page).to have_content(booking.end_date.strftime("%d/%m/%Y"))
     end
   end
 end

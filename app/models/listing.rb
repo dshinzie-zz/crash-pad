@@ -1,8 +1,9 @@
 class Listing < ApplicationRecord
   belongs_to :user
   has_many :reviews, dependent: :destroy
-  has_many :nights
+  has_many :nights, :dependent => :delete_all
   has_many :ratings, dependent: :destroy
+
 
   validates :description, :price, :accomodation, :start_date, :end_date, presence: true
 

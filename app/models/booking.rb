@@ -15,7 +15,9 @@ class Booking < ApplicationRecord
 
   def valid_booking?
     self.start_date.upto(self.end_date) do |date|
-      raise ActiveRecord::Rollback, "Invalid Booking" unless Night.find_by(date: date, listing: listing)
+      raise ActiveRecord::Rollback, "Invalid Booking" unless
+        Night.find_by(date: date, listing: listing) &&
+        Night.find_by(date: date, listing: listing).booking.nil?
     end
   end
 

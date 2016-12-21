@@ -1,4 +1,6 @@
-class Api::V1::ReviewsController < ApplicationController
+class Api::V1::ReviewsController < ActionController::API
+
+  before_action :authenticated_user
 
   def index
     if authenticated_user
@@ -44,12 +46,12 @@ class Api::V1::ReviewsController < ApplicationController
 
   private
 
-  def authenticated_user
-    User.find_by(api_key: params[:api_key])
-  end
+    def authenticated_user
+      User.find_by(api_key: params[:api_key])
+    end
 
-  def forbidden_request
-    render :json => {:error => 'forbidden'}.to_json, :status => 403
-  end
+    def forbidden_request
+      render :json => {:error => 'forbidden'}.to_json, :status => 403
+    end
 
 end

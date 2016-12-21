@@ -7,7 +7,7 @@ describe "As a logged in user" do
 
       visit root_path
       click_on "Dashboard"
-      
+
 
       expect(current_path).to eq(dashboard_path(user))
       expect(page).to have_content(user.first_name)
@@ -21,6 +21,7 @@ describe "As a logged in user" do
 
       visit root_path
       click_on "Dashboard"
+      click_on "Show Profile"
       click_on "Edit Profile"
 
       expect(current_path).to eq(edit_user_path(user))
@@ -31,6 +32,7 @@ describe "As a logged in user" do
 
       visit root_path
       click_on "Dashboard"
+      click_on "Show Profile"
       click_on "Edit Profile"
 
       expect(current_path).to eq(edit_user_path(user))
@@ -60,6 +62,7 @@ describe "As a logged in user" do
 
       visit root_path
       click_on "Dashboard"
+      click_on "Show Profile"
       click_on "Edit Profile"
 
       expect(current_path).to eq(edit_user_path(user))

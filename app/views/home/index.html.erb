@@ -90,7 +90,27 @@
 
   <script>
    $( function() {
-     $( "#checkin" ).datepicker();
-     $( "#checkout" ).datepicker();
+
+     var available_dates = [];
+
+     <% Night.all.each do |night| %>
+        available_dates.push(<%= night.date.to_json.html_safe %>);
+     <% end %>
+
+     $( "#checkin" ).datepicker({
+       minDate: 0,
+       beforeShowDay: function(date){
+         var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+         return [ available_dates.indexOf(string) == -1 ]
+        }
+     });
+
+     $( "#checkout" ).datepicker({
+       minDate: 0,
+       beforeShowDay: function(date){
+         var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+         return [ available_dates.indexOf(string) == -1 ]
+        }
+     });
    } );
    </script>

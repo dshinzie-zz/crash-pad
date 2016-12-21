@@ -1,9 +1,10 @@
 require 'rails_helper'
 
-describe 'As a user' do
+describe 'As a verified user' do
   let!(:listing) { create(:listing, start_date: '1/1/2017', end_date: '5/1/2017') }
   context "when I book my own listing" do
     it "displays a flash message" do
+      listing.user.update(verified: true)
       booking = Booking.new(
         start_date: "01/02/2017",
         end_date: "01/03/2017",

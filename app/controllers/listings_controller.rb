@@ -3,7 +3,7 @@ class ListingsController < ApplicationController
   before_filter :require_verified, only: [:new, :create]
 
   def index
-    @listings = Listing.search(params[:q], params[:checkin], params[:checkout])#.joins(:user)
+    @listings = Listing.search(params[:q], params[:checkin], params[:checkout]).joins(:user)
   end
 
   def show

@@ -28,7 +28,8 @@ class Listing < ApplicationRecord
     return Listing.all if location.nil?
 
     geocode_location = GeocodeLocation.get_location(location)
-    return {} if geocode_location == :bad_address
+    # return {} if geocode_location == :bad_address
+    return Listing.where(address: :bad_address) if geocode_location == :bad_address
 
     if !geocode_location.address.nil?
       where(address: geocode_location.address)

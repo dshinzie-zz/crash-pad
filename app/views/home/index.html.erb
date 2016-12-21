@@ -93,7 +93,7 @@
 
      var available_dates = [];
 
-     <% Night.all.each do |night| %>
+     <% @booked_nights.each do |night| %>
         available_dates.push(<%= night.date.to_json.html_safe %>);
      <% end %>
 
@@ -109,7 +109,7 @@
        minDate: 0,
        beforeShowDay: function(date){
          var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
-         return [ available_dates.indexOf(string) == -1 ]
+         return [ b.indexOf(string) == -1 ]
         }
      });
    } );

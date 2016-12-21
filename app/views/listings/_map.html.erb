@@ -2,7 +2,7 @@
 
 function initMap() {
   var locations = [];
-  <% Listing.all.each_with_index do |listing, index| %>
+  <% @listings.each_with_index do |listing, index| %>
    locations.push([<%= listing.description[0..10].to_json.html_safe %>, <%= listing.latitude.to_json %>, <%= listing.longitude.to_json %>, <%= index %>]);
   <% end %>
 
@@ -36,7 +36,6 @@ function initMap() {
         map.setZoom(4);
         google.maps.event.removeListener(listener);
     });
-
 }
 //
 </script>

@@ -13,6 +13,9 @@
           <div class="featured-price-div">
             <span class="featured-price"><%= number_to_currency(listing.price, unit_price: "$") %></span><span><%= listing.concat_address %><span>
           </div>
+          <div class="">
+            Available from: <%= listing.start_date %> to <%= listing.end_date %>
+          </div>
           <div><%= link_to "Checkout listing", listing_path(listing) %></div>
         </article>
         <% end %>

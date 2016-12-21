@@ -1,0 +1,14 @@
+<h2>Filters</h2>
+
+  Accomodates: <input type="number" id="accomodates">
+  <input type="submit" id="submit" value="filter">
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#submit').on('click', function(){
+      $("div.accomodation").not(getNumber()).parent().hide();
+    });
+    function getNumber(){
+      return "#".concat($('input[type=number]').val());
+    }
+  });
+</script>

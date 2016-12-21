@@ -40,9 +40,12 @@ class Listing < ApplicationRecord
   end
 
   def self.get_listing_by_date(start_date, end_date)
+    # byebug
+    # joins(:nights).where("nights.date >= ? AND nights.date <= ?", start_date, end_date).distinct
     joins(:nights)
-    .where("nights.date >= ? AND nights.date <= ?", start_date, end_date)
-    .distinct
+    .select("listings.*, max(nights.date) as max_date, min(nights.date) as min_date")
+    .group("listings.id")
+    .having("? >= min(nights.date) AND ? <= max(nights.date)", start_date, end_date)
   end
 
   def concat_address

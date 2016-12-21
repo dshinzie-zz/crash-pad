@@ -19,5 +19,40 @@ describe "As a not logged in user" do
       expect(page).not_to have_content(listing_2.price)
       expect(page).not_to have_content(listing_3.price)
     end
+
+    it "returns the listings within the check in and check out date" do
+      visit root_path
+      fill_in 'checkin', with: Date.parse('4/1/2016')
+      fill_in 'checkout', with: Date.parse('5/1/2016')
+
+      click_on "Search"
+
+      expect(current_path).to eq(listings_path)
+      expect(page).to have_content(listing_1.price)
+      expect(page).to have_content(listing_3.price)
+      expect(page).not_to have_content(listing_2.price)
+    end
+
+    it "returns no listings if dates are invalid" do
+      visit root_path
+      fill_in 'checkin', with: Date.parse('1/1/2016')
+      fill_in 'checkout', with: Date.parse('10/1/2016')
+
+      click_on "Search"
+
+      expect(current_path).to eq(listings_path)
+      expect(page).to have_content("No Available Listings")
+    end
+
+    it "returns no listings if dates are invalid" do
+      visit root_path
+      fill_in 'checkin', with: Date.parse('9/1/2016')
+      fill_in 'checkout', with: Date.parse('20/1/2016')
+
+      click_on "Search"
+
+      expect(current_path).to eq(listings_path)
+      expect(page).to have_content("No Available Listings")
+    end
   end
 end

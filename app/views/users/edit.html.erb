@@ -1,6 +1,6 @@
 <h2 class="account-header">Update Account</h2>
 <div class="form">
-  <%= form_for @user do |f| %>
+  <%= form_for current_user do |f| %>
     <div class="text-input">
       <%= f.label :email %>
       <%= f.text_field :email, placeholder: "Email" %>

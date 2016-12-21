@@ -1,10 +1,12 @@
 require 'rails_helper'
 
-describe "As a logged in user" do
+describe "As a verified logged in user" do
   let!(:dates) { { start_date: '1/1/2017', end_date: '5/1/2017' } }
   context "When I create a valid lisiting" do
     it "stores lat and long" do
       user = stub_login_user
+
+      user.update(verified: true)
 
       visit new_listing_path
 
@@ -30,6 +32,8 @@ describe "As a logged in user" do
     it "does not save bad address to the database" do
       user = stub_login_user
 
+      user.update(verified: true)
+
       visit new_listing_path
 
       fill_in "listing[city]", with: "blah"
@@ -50,6 +54,9 @@ describe "As a logged in user" do
     it "does not save blank address to the database" do
       user = stub_login_user
 
+      user.update(verified: true)
+
+
       visit new_listing_path
 
       fill_in "listing[city]", with: ""
@@ -67,5 +74,16 @@ describe "As a logged in user" do
       expect(Listing.count).to eq(0)
     end
   end
+end
+describe "An unverified logged in user" do
+  let!(:dates) { { start_date: '1/1/2017', end_date: '5/1/2017' } }
+    it "cannot create a listing" do
+      user = stub_login_user
 
+      visit new_listing_path
+
+      expect(page).to have_http_status(404)
+      expect(page).to have_content("Not Found")
+
+  end
 end

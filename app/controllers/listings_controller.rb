@@ -1,5 +1,7 @@
 class ListingsController < ApplicationController
 
+  before_filter :require_verified, only: [:new, :create]
+
   def index
     @listings = Listing.search(params[:q], params[:checkin], params[:checkout])#.joins(:user)
   end
@@ -46,4 +48,7 @@ class ListingsController < ApplicationController
       params.require(:listing).permit(:address, :city, :state).values.join(" ")
     end
 
+    def require_verified
+      render plain: 'Not Found', status: '404' unless is_verified?
+    end
 end

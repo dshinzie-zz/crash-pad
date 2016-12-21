@@ -5,6 +5,7 @@ RSpec.describe Booking, type: :model do
 
   context 'relationships' do
     it { should belong_to(:user) }
+    it { should have_many(:nights) }
   end
 
   context '#book_nights' do
@@ -18,7 +19,7 @@ RSpec.describe Booking, type: :model do
       expect(booking.nights.last.listing).to_not eq(nil)
     end
     it "returns a warning for a booking outside the valid range" do
-      booking = Booking.new(
+      booking = Booking.create(
               user: create(:user),
               start_date: '1/1/2017',
               end_date: '6/1/2017',
@@ -26,9 +27,9 @@ RSpec.describe Booking, type: :model do
               listing: listing
             )
 
-      expect(booking.save).to eq(nil)
+      expect(booking.id).to eq(nil)
     end
-    xit "prevents a user from double booking" do
+    it "prevents a user from double booking" do
       booking1 = Booking.create(
               user: create(:user),
               start_date: '1/1/2017',
@@ -36,15 +37,28 @@ RSpec.describe Booking, type: :model do
               credit_card_number: '1234',
               listing: listing
             )
-      booking2 = Booking.new(
+      booking1.book_nights
+
+      booking2 = Booking.create(
               user: create(:user),
+              start_date: '1/1/2017',
+              end_date: '5/1/2017',
+              credit_card_number: '5678',
+              listing: listing
+            )
+
+      expect(booking2.id).to eq(nil)
+    end
+    it "prevents a user from booking their own listing" do
+      booking = Booking.create(
+              user: listing.user,
               start_date: '1/1/2017',
               end_date: '5/1/2017',
               credit_card_number: '1234',
               listing: listing
             )
 
-      expect(booking2.save).to eq(nil)
+        expect(booking.id).to eq(nil)
     end
   end
 end

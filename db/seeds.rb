@@ -2,17 +2,17 @@ class Seed
   def self.start
     seed = Seed.new
     seed.create_users
-    # seed.create_admins
+    seed.create_admin
     seed.create_listings
   end
 
   def create_users
-    25.times do |i|
+    50.times do |i|
       user = User.create!(
-        email: Faker::Internet.email,
-        first_name: Faker::Name.first_name,
-        last_name: Faker::Name.last_name,
-        phone: Faker::Number.number(10),
+        email: "user#{i}@user.com",
+        first_name: "Jonny_#{i}",
+        last_name: "Quest",
+        phone: rand(10**10),
         password_digest: "password",
         api_key: nil,
         avatar_url: "stock.jpg",
@@ -22,39 +22,111 @@ class Seed
     end
   end
 
-  def create_admins
-    25.times do |i|
-      user = User.create!(
-        email: Faker::Internet.email,
-        first_name: "admin" + Faker::Name.first_name,
-        last_name: Faker::Name.last_name,
-        phone: Faker::PhoneNumber.phone_number,
-        password_digest: "password",
-        api_key: nil,
-        avatar_url: "stock.jpg",
-        role: 1)
+  def create_admin
+    user = User.create!(
+      email: "clancey007@example.com",
+      first_name: "Admin",
+      last_name: "Quest",
+      phone: rand(10**10),
+      password_digest: "password",
+      api_key: nil,
+      avatar_url: "stock.jpg",
+      role: 1)
 
-      puts "Admin #{i}: #{user.email} created!"
+    puts "Admin #{user.email} created!"
+  end
+
+  def random_date(type)
+    if type == "start"
+      Time.now - (60 * 60 * 24 * rand(1..60))
+    else
+      Time.now + (60 * 60 * 24 * rand(1..60))
     end
   end
 
   def create_listings
-    50.times do |i|
-      listing = Listing.create!(
-        user: User.find(rand(1..24)),
-        description: Faker::Lorem.paragraph,
-        image_url: "apt#{rand(1..5)}.jpg",
-        latitude: Faker::Address.latitude,
-        longitude: Faker::Address.longitude,
-        price: Faker::Number.decimal(3,2),
-        accomodation: Faker::Number.number(2),
-        city: Faker::Address.city,
-        state: Faker::Address.state_abbr,
-        start_date: Faker::Date.between(365.days.ago, Date.today),
-        end_date: Faker::Date.forward(365)
+    User.all.each do |user|
+      20.times do |i|
+        listing = user.listings.create!(
+          description: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English",
+          image_url: "apt#{rand(1..5)}.jpg",
+          latitude: 39.7496354 + i,
+          longitude: -105.0001058 - i,
+          price: rand(50.00..500.00),
+          accomodation: rand(1..10),
+          city: "Denver",
+          state: "CO",
+          address: "1510 Blake St",
+          start_date: random_date("start"),
+          end_date: random_date("end")
         )
 
-      puts "Listing #{i}: listing for host #{listing.user.first_name} created!"
+        puts "Listing #{listing.city} created for #{user.first_name}"
+
+        listing = user.listings.create!(
+          description: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English",
+          image_url: "apt#{rand(1..5)}.jpg",
+          latitude: 29.7579212 + i,
+          longitude: -95.36348079999999 - i,
+          price: rand(50.00..500.00),
+          accomodation: rand(1..10),
+          city: "Houston",
+          state: "TX",
+          address: "811 Main St",
+          start_date: random_date("start"),
+          end_date: random_date("end")
+        )
+
+        puts "Listing #{listing.city} created for #{user.first_name}"
+
+        listing = user.listings.create!(
+          description: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English",
+          image_url: "apt#{rand(1..5)}.jpg",
+          latitude: 30.29571079999999 + i,
+          longitude: -97.74421289999999 - i,
+          price: rand(50.00..500.00),
+          accomodation: rand(1..10),
+          city: "Austin",
+          state: "TX",
+          address: "2828 Rio Grande st",
+          start_date: random_date("start"),
+          end_date: random_date("end")
+        )
+
+        puts "Listing #{listing.city} created for #{user.first_name}"
+
+        listing = user.listings.create!(
+          description: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English",
+          image_url: "apt#{rand(1..5)}.jpg",
+          latitude: 39.7508398 + i,
+          longitude: -104.9965293 - i,
+          price: rand(50.00..500.00),
+          accomodation: rand(1..10),
+          city: "Denver",
+          state: "CO",
+          address: "1331 17th St",
+          start_date: random_date("start"),
+          end_date: random_date("end")
+        )
+
+        puts "Listing #{listing.city} created for #{user.first_name}"
+
+        listing = user.listings.create!(
+          description: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English",
+          image_url: "apt#{rand(1..5)}.jpg",
+          latitude: 39.7439476 + i,
+          longitude: -105.0202786 - i,
+          price: rand(50.00..500.00),
+          accomodation: rand(1..10),
+          city: "Denver",
+          state: "CO",
+          address: "1701 Bryant St",
+          start_date: random_date("start"),
+          end_date: random_date("end")
+        )
+
+        puts "Listing #{listing.city} created for #{user.first_name}"
+      end
     end
   end
 

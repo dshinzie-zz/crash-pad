@@ -33,6 +33,14 @@ class Api::V1::ReviewsController < ApplicationController
     end
   end
 
+  def destroy
+    if authenticated_user
+      Review.find(params[:id]).destroy
+    else
+      render json: { error: 'forbidden'}.to_json, status: 403
+    end
+  end
+
   private
 
   def authenticated_user

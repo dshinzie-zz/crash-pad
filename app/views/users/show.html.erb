@@ -1,17 +1,45 @@
-<h1><%= @user.first_name %></h1>
-<img src="" alt="">
-<p>Account Status: <% if @user.verified? %>Verified<% else -%>Not Verified<% end -%>
-<% if !@user.verified? %>
-<p>
-  <%= link_to "Verify your account now.", verify_path %>
-</p>
-<% end -%>
-<h3>Email</h3>
-<p><%= @user.email %></p>
-<h3>First Name</h3>
-<p><%= @user.first_name %></p>
-<h3>Last Name</h3>
-<p><%= @user.last_name %></p>
-<h3>Phone</h3>
-<p><%= @user.phone %></p>
-<%= link_to "Edit Profile", edit_user_path(current_user) %>
+<%= render partial: "layouts/dashboard_navbar" %>
+
+<div class="wrapper">
+  <div class="wrapper_container">
+    <div class="row">
+      <div class="col-1">
+        <div class="user-item">
+          <div class="user-item_photo">
+            <%= image_tag(current_user.avatar_url) %>
+          </div>
+          <div class="user-item_info">
+            <%= button_to "Edit Profile", edit_user_path(current_user), method: :get, class:"btn btn-info" %>
+          </div>
+        </div>
+      </div>
+      <div class="col-2">
+        <div class="overview-container">
+
+          <div class="chat">
+            <div class="head">Profile Information</div>
+            <div class="chat_inner">
+              <div class="chat_inner-item">
+                <div class="message">
+
+                  <p>Account Status: <% if @user.verified? %>Verified<% else -%>Not Verified<% end -%>
+                  <% if !@user.verified? %>
+                  <p>
+                    <%= link_to "Verify your account now.", verify_path %>
+                  </p>
+                  <% end -%>
+                  <p>Name: <%=  @user.first_name%> <%=  @user.last_name%></p>
+                  <p>Email: <%=  @user.email%></p>
+                  <p>Phone: <%=  @user.phone%></p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

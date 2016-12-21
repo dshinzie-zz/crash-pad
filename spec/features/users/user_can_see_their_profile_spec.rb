@@ -12,7 +12,7 @@ describe 'As a logged in user' do
       expect(page).to have_content(user.first_name)
       expect(page).to have_content(user.last_name)
       expect(page).to have_content(user.phone)
-      expect(page).to have_content("Edit Profile")
+      expect(page).to have_button("Edit Profile")
     end
   end
 end

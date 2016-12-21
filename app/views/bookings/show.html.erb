@@ -1,4 +1,4 @@
 <h1> Your Booking </h1>
 
-<%= @booking.start_date %>
-<%= @booking.end_date %>
+<%= @booking.start_date.strftime("%d/%m/%Y") %>
+<%= @booking.end_date.strftime("%d/%m/%Y") %>

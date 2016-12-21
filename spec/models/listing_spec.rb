@@ -29,5 +29,27 @@ describe Listing do
   describe "relationships" do
     it { should belong_to(:user) }
     it { should have_many(:reviews) }
+    it { should have_many(:nights) }
   end
+
+  describe "methods" do
+    context '#create_nights' do
+      it "creates nights for a range" do
+        listing = create(:listing, start_date: '1/1/2017', end_date: '3/1/2017')
+
+        expect(listing.nights.first.date).to eq(listing.start_date)
+        expect(listing.nights.last.date).to eq(listing.end_date)
+        expect(listing.nights.count).to eq(3)
+      end
+
+      it "creates nights over a new year" do
+        listing = create(:listing, start_date: '30/12/2016', end_date: '1/1/2017')
+
+        expect(listing.nights.first.date).to eq(listing.start_date)
+        expect(listing.nights.last.date).to eq(listing.end_date)
+        expect(listing.nights.count).to eq(3)
+      end
+    end
+  end
+
 end

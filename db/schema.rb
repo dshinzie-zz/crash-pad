@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161218220742) do
+ActiveRecord::Schema.define(version: 20161220015123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 20161218220742) do
     t.citext   "city"
     t.citext   "state"
     t.text     "address"
+    t.date     "start_date"
+    t.date     "end_date"
     t.index ["user_id"], name: "index_listings_on_user_id", using: :btree
   end
 
@@ -47,7 +49,19 @@ ActiveRecord::Schema.define(version: 20161218220742) do
     t.integer  "listing_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "booking_id"
+    t.index ["booking_id"], name: "index_nights_on_booking_id", using: :btree
     t.index ["listing_id"], name: "index_nights_on_listing_id", using: :btree
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "listing_id"
+    t.integer  "score",      default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["listing_id"], name: "index_ratings_on_listing_id", using: :btree
+    t.index ["user_id"], name: "index_ratings_on_user_id", using: :btree
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -74,11 +88,15 @@ ActiveRecord::Schema.define(version: 20161218220742) do
     t.integer  "authy_id"
     t.boolean  "verified"
     t.string   "slug"
+    t.integer  "status",          default: 0
   end
 
   add_foreign_key "bookings", "users"
   add_foreign_key "listings", "users"
+  add_foreign_key "nights", "bookings"
   add_foreign_key "nights", "listings"
+  add_foreign_key "ratings", "listings"
+  add_foreign_key "ratings", "users"
   add_foreign_key "reviews", "listings"
   add_foreign_key "reviews", "users"
 end

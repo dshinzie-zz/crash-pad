@@ -4,7 +4,6 @@ class Listing < ApplicationRecord
   has_many :nights, :dependent => :delete_all
   has_many :ratings, dependent: :destroy
 
-
   validates :description, :price, :accomodation, :start_date, :end_date, presence: true
 
   after_create :set_default_photo, :create_nights

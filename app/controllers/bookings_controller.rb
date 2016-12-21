@@ -1,5 +1,7 @@
 class BookingsController < ApplicationController
 
+  before_filter :require_verified, only: [:new, :create]
+
   def new
     @listing = Listing.find(params[:listing_id])
     @booking = Booking.new
@@ -28,6 +30,10 @@ class BookingsController < ApplicationController
 
   def all_params
     booking_params.merge({listing: Listing.find(params[:listing_id])})
+  end
+
+  def require_verified
+    render plain: 'Not Found', status: '404' unless is_verified?
   end
 
 end

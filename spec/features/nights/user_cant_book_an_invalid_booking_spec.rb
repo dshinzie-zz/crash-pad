@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'As a user' do
   let!(:listing) { create(:listing, start_date: '1/1/2017', end_date: '5/1/2017') }
   context "when I book my own listing" do
-    it "displays a flash message" do
+    xit "displays a flash message" do
       booking = Booking.new(
         start_date: "01/02/2017",
         end_date: "01/03/2017",

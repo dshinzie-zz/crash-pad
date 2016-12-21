@@ -20,11 +20,11 @@ class Listing < ApplicationRecord
     location = GeocodeLocation.get_location(argument)
     return {} if location == :bad_address
 
-    if !location.address.nil?
+    if location.address
       where(address: location.address)
-    elsif !location.city.nil?
+    elsif location.city
       where(city: location.city)
-    elsif !location.state.nil?
+    elsif location.state
       where(state: location.state)
     end
   end

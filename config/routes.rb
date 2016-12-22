@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :listings, only: [:index, :show, :edit, :update, :destroy]
   end
 
-  resources :users, only: [:new, :create, :edit, :update] do
+  resources :users, only: [:new, :create, :edit, :update, :show] do
     resources :bookings, only: [:index, :show]
     get '/reset_password', to: 'reset_password#edit', as: 'reset_password'
     patch '/reset_password', to: 'reset_password#update'
@@ -36,5 +36,5 @@ Rails.application.routes.draw do
     resources :ratings, only: [:create]
   end
 
-  get '/dashboard', to: 'dashboard#show'
+  get '/dashboard', to: 'dashboard#show', path: :user
 end

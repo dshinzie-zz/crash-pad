@@ -3,51 +3,48 @@
       <%= image_tag(@listing.image_url, class: "listing-single-image") %>
   </div>
 <% end %>
+<section class="container-fluid listing-show-container">
+ <div class="col-md-6">
+   <div class="featured-price-div">
+     <span class="featured-price-show"><%= number_to_currency(@listing.price, unit_price: "$") %></span><span class="address-show"><%= @listing.concat_address %><span>
+   </div>
+  <div>
+    <h2>About This Listing</h2>
+    <p><%= @listing.description %></p>
+    <p>Accomdation: <%= @listing.accomodation %></p>
+    <p>Availability: <%= @listing.start_date.strftime("%d/%m/%Y") %> to <%= @listing.end_date.strftime("%d/%m/%Y") %></p>
+  </div>
+</div>
 
- <section class="container-fluid listing-show-container">
+<div class="col-md-6">
+  <div class="container-fluid">
+    <h2 class="text-center">Book this Listing!</h2>
 
-   <div class="col-md-6 listing-details-container">
-     <div class="featured-price-div">
-       <span class="featured-price-show"><%= number_to_currency(@listing.price, unit_price: "$") %></span><span class="address-show"><%= @listing.concat_address %><span>
-     </div>
-    <div>
-      <h2>About This Listing</h2>
-      <p><%= @listing.description %></p>
-      <p>Accomdation: <%= @listing.accomodation %></p>
-      <p>Availability: <%= @listing.start_date.strftime("%d/%m/%Y") %> to <%= @listing.end_date.strftime("%d/%m/%Y") %></p>
+    <div class="form">
+      <%= form_for [@listing, @booking] do |f| %>
+        <div class="text-input">
+          <%= f.label :start_date %>
+          <%= f.date_field :start_date, placeholder: "dd/mm/yyyy" %>
+          <span class="separator"> </span>
+        </div>
+
+        <div class="text-input">
+          <%= f.label :end_date %>
+          <%= f.date_field :end_date, placeholder: "dd/mm/yyyy" %>
+          <span class="separator"> </span>
+        </div>
+
+        <div class="text-input">
+          <%= f.label :credit_card_number %>
+          <%= f.text_field :credit_card_number, placeholder: "Credit Card Number" %>
+          <span class="separator"> </span>
+        </div>
+
+        <div class="button-center">
+          <%= f.submit "Submit Request", class: "update-btn" %>
+        </div>
+
+        <% end %>
     </div>
   </div>
-
-  <div class="col-md-6">
-    <div class="container-fluid">
-      <h2 class="text-center">Book this Listing!</h2>
-
-      <div class="form">
-        <%= form_for [@listing, @booking] do |f| %>
-          <div class="text-input">
-            <%= f.label :start_date %>
-            <%= f.date_field :start_date, placeholder: "dd/mm/yyyy" %>
-            <span class="separator"> </span>
-          </div>
-
-          <div class="text-input">
-            <%= f.label :end_date %>
-            <%= f.date_field :end_date, placeholder: "dd/mm/yyyy" %>
-            <span class="separator"> </span>
-          </div>
-
-          <div class="text-input">
-            <%= f.label :credit_card_number %>
-            <%= f.text_field :credit_card_number, placeholder: "Credit Card Number" %>
-            <span class="separator"> </span>
-          </div>
-
-          <div class="button-center">
-            <%= f.submit "Submit Request", class: "update-btn" %>
-          </div>
-
-          <% end %>
-      </div>
-    </div>
-
 </section>

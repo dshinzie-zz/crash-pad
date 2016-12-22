@@ -1,14 +1,40 @@
-<h2>Filters</h2>
-
-  Accomodates: <input type="number" id="accomodates">
-  <input type="submit" id="submit" value="filter">
+<div class="col-md-8">
+  <h2 class="account-header" >Filter</h2>
+  <div class="container-fluid">
+    <h5>Min Accomodations: <input type="number" id="accomodates" ></h5>
+    <h5>Min Price: <input type="number" id="floor" ></h5>
+    <h5>Max Price: <input type="number" id="ceiling" ></h5>
+    <input type="submit" id="submit" value="Filter" class="btn btn-primary filter-block">
+    <input type="submit" id="clear" value="Clear Filter" class="btn btn-primary filter-block">
+  </div>
+</div>
+<div class="col-md-7">
+  <hr>
+</div>
 <script type="text/javascript">
   $(document).ready(function(){
+    var accomodation = $('input[id=accomodates]');
+    var floor = $('input[id=floor]');
+    var ceiling = $('input[id=ceiling]');
+
     $('#submit').on('click', function(){
-      $("div.accomodation").not(getNumber()).parent().hide();
+      $("div.accomodation").each(function(){
+        var listed_price = $(this).parent().children().get(1).id
+        var accomodates = $(this).get(0).id
+
+        if ( accomodates >= accomodation.val() && (listed_price >= floor.val() && listed_price <= ceiling.val() ) ) {
+          $(this).parent().show();
+        } else {
+          $(this).parent().hide();
+        }
+      });
     });
-    function getNumber(){
-      return "#".concat($('input[type=number]').val());
-    }
+
+    $('#clear').on('click', function(){
+      $("div.accomodation").each(function(){
+          $(this).parent().show();
+      });
+    });
+
   });
 </script>

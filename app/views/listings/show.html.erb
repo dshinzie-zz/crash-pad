@@ -14,6 +14,7 @@
       <p><%= @listing.description %></p>
       <p>Accomdation: <%= @listing.accomodation %></p>
       <p>Availability: <%= @listing.start_date.strftime("%d/%m/%Y") %> to <%= @listing.end_date.strftime("%d/%m/%Y") %></p>
+      <p>Hosted by: <%= link_to @listing.user.first_name, show_user_path(@listing.user.slug) %> </p>
       <p>This listing has a <%= @listing.average_rating %> rating!</p>
       <% if current_user %>
         <%= render partial: "layouts/ratings" %>

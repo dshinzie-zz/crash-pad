@@ -5,7 +5,6 @@ class BookingsController < ApplicationController
   def new
     @listing = Listing.find(params[:listing_id])
     @booking = Booking.new
-    @booked_nights = Night.booked_nights
   end
 
   def create

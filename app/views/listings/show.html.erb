@@ -13,6 +13,7 @@
       <h2>About This Listing</h2>
       <p><%= @listing.description %></p>
       <p>Accomdation: <%= @listing.accomodation %></p>
+      <p>Availability: <%= @listing.start_date.strftime("%d/%m/%Y") %> to <%= @listing.end_date.strftime("%d/%m/%Y") %></p>
     </div>
   </div>
 

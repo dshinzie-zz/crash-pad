@@ -39,5 +39,4 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'dashboard#show'
 
   get '/:user', to: 'users#show', as: 'show_user'
-
 end

@@ -1,9 +1,15 @@
+<h2 class="text-center">Review Your Trip to <%= @listing.city %></h2>
+
+<h3 class="text-center">
+  <%= link_to "Go to Dashboard", dashboard_path %>
+</h3>
+
+
 <div class="col-md-6">
-  <h1> <%= @listing.city %> </h1>
   <img src="<%=@listing.image_url%>" class="img-thumbnail" alt="Cinque Terre" width="100%" height="100%"></img>
 </div>
 
-<div class="col-md-12">
+<div class="col-md-6">
   <div class="panel-group" id="booking-dates">
     <div class="panel panel-default">
       <div class="panel-body">Dates</div>
@@ -15,6 +21,7 @@
     </div>
   </div>
 </div>
+
 
 <style>
 #booking-dates {

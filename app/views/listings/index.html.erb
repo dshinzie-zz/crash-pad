@@ -1,6 +1,7 @@
-  <div class="container-fluid">
-    <%= render partial: "filters" %>
-  </div>
+<div class="container-fluid">
+  <%= render partial: "filters" %>
+</div>
+
 <section class="container-fluid">
   <div class="col-md-8">
 
@@ -8,13 +9,18 @@
 
     <div class="listing-container">
       <% if @listings.empty? %>
-        <%= render partial: "no_listings" %>
+      <div class="container-fluid">
+          <%= render partial: "no_listings" %>
+          <h2 class="back-search"><%= link_to "Back to Search", root_path %></h2><br>
+      </div>
+
       <% else %>
         <% @listings.each do |listing| %>
         <article class="col-md-6 listing-<%=listing.id%> listing-image">
-          <div><%= image_tag (listing.image_url), size: "380x230" %></div>
+          <div><%= image_tag (listing.image_url), size: "380x230" , class: "img-responsive" %></div>
           <div class="featured-price-div" id="<%= listing.price %>">
-            <span class="featured-price"><%= number_to_currency(listing.price, unit_price: "$") %></span><span><%= listing.concat_address %><span>
+            <p class="featured-price"><%= number_to_currency(listing.price, unit_price: "$") %></p>
+            <p><%= listing.concat_address %><p>
           </div>
           <div class="">
             Available from: <%= listing.start_date %> to <%= listing.end_date %>
@@ -25,6 +31,12 @@
           <div><%= link_to "Checkout listing", listing_path(listing) %></div>
         </article>
         <% end %>
+
+        <div class="container-fluid">
+          <h2 class="back-search"><%= link_to "Back to Search", root_path %></h2><br>
+          <span class="paginate"><%= will_paginate @listings %></span>
+        </div>
+
       <% end %>
     </div>
 </div>
@@ -36,5 +48,4 @@
       <%= render partial: "map" %>
     </div>
   </div>
-
 </div>

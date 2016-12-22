@@ -24,4 +24,8 @@ namespace :fix_seed_data do
                 role: 1,
                 verified: true)
   end
+
+  task :update_user => :environment do
+    User.update_all(password_digest: BCrypt::Password.create("password"))
+  end
 end

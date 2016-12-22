@@ -1,3 +1,6 @@
+  <div class="container-fluid">
+    <%= render partial: "filters" %>
+  </div>
 <section class="container-fluid">
   <div class="col-md-8">
 
@@ -10,11 +13,14 @@
         <% @listings.each do |listing| %>
         <article class="col-md-6 listing-<%=listing.id%> listing-image">
           <div><%= image_tag (listing.image_url), size: "380x230" %></div>
-          <div class="featured-price-div">
+          <div class="featured-price-div" id="<%= listing.price %>">
             <span class="featured-price"><%= number_to_currency(listing.price, unit_price: "$") %></span><span><%= listing.concat_address %><span>
           </div>
           <div class="">
             Available from: <%= listing.start_date %> to <%= listing.end_date %>
+          </div>
+          <div class="accomodation" id="<%= listing.accomodation %>">
+            Accomodates: <%= listing.accomodation %>
           </div>
           <div><%= link_to "Checkout listing", listing_path(listing) %></div>
         </article>

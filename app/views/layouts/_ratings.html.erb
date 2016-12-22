@@ -1,0 +1,12 @@
+<div class="btn-group dropup">
+  <button type="button" class="btn btn-secondary dropdown-toggle" name="Rate" value="Rate" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Rate Me!
+  </button>
+  <div class="dropdown-menu">
+    <%= link_to "Terrible", listing_ratings_path(@listing.id, {:score => "Terrible", :user_id => current_user}), method: :post, class: "dropdown-item" %>
+    <%= link_to "Below_Average", listing_ratings_path(@listing.id, {:score => "Below_Average", :user_id => current_user}), method: :post, class: "dropdown-item" %>
+    <%= link_to "Mediocre", listing_ratings_path(@listing.id, {:score => "Mediocre", :user_id => current_user}), method: :post, class: "dropdown-item" %>
+    <%= link_to "Above_Average", listing_ratings_path(@listing.id, {:score => "Above_Average", :user_id => current_user}), method: :post, class: "dropdown-item" %>
+    <%= link_to "Great", listing_ratings_path(@listing.id, {:score => "Great", :user_id => current_user}), method: :post, class: "dropdown-item" %>
+ </div>
+</div>

@@ -1,13 +1,14 @@
-<div class="form">
-  <%= form_for @user , url: {action: "update"} do |f| %>
-    <div class="text-input">
-      <%= f.label :password %>
-      <%= f.text_field :password, placeholder: "Password" %>
-      <span class="separator"> </span>
-    </div>
-    <div class="button-center">
-      <%= f.submit "Reset Password", class: "update-btn" %>
-    </div>
-
-    <% end %>
+<div class="container" style="padding-top: 10%;">
+  <div class="form text-center">
+    <%= form_for @user , url: {action: "update"} do |f| %>
+      <div class="text-input">
+        <%= f.label :password %>
+        <%= f.text_field :password, placeholder: "Password" %>
+        <span class="separator"> </span>
+      </div>
+      <div class="button-center">
+        <%= f.submit "Reset Password", class: "update-btn" %>
+      </div>
+      <% end %>
+  </div>
 </div>

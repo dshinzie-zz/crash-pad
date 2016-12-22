@@ -1,4 +1,4 @@
-<h2 class="account-header">Update Account</h2>
+<h2 class="text-center">Update Account</h2>
 <div class="form">
   <%= form_for current_user do |f| %>
     <div class="text-input">
@@ -30,4 +30,8 @@
     </div>
 
     <% end %>
+
+    <div class="button-center" style="padding-top: 10%;">
+      <%= button_to "Reset Password", user_reset_password_path(current_user), method: "get" %>
+    </div>
 </div>

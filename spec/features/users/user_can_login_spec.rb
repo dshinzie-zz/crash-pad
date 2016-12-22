@@ -8,6 +8,7 @@ describe "When a user goes to login page" do
 
     fill_in "Email", with: "brad@test.com"
     fill_in "Password", with: "password"
+    require "pry"; binding.pry
 
     click_button "Login"
 

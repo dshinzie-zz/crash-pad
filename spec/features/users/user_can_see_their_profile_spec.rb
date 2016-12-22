@@ -5,8 +5,6 @@ describe 'As a logged in user' do
     it "shows my verfication status, email, first name, last name, phone" do
       user = stub_login_user
 
-      user.update(verified: true)
-
       visit user_path(user)
 
       expect(page).to have_content(user.verified)

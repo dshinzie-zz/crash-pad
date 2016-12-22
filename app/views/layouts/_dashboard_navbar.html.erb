@@ -1,10 +1,10 @@
 <nav class="navbar-profile">
   <div class="navbar-inner">
     <ul class="navbar-ul">
-      <li><%= link_to "Overview", dashboard_path %></li>
+      <li><%= link_to "Overview", dashboard_path(current_user) %></li>
       <li><a href="#">Messages</a></li>
-      <li><%= link_to "My Bookings", user_bookings_path(current_user) %></li>
-      <li><%= link_to "Show Profile", show_user_path(current_user.slug) %></li>
+      <li><a href="#">My Bookings</a></li>
+      <li><%= link_to "Show Profile", user_path(current_user) %></li>
     </ul>
   </div>
 </nav>

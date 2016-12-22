@@ -11,4 +11,15 @@ namespace :fix_seed_data do
   task :fix_seed => :environment do
     fix_seed_locations
   end
+
+  task :create_admin => :environment do
+    User.create(email: "clancey007@example.com",
+                first_name: "Admin",
+                last_name: "Quest",
+                phone: rand(10**10),
+                password_digest: BCrypt::Password.create("password"),
+                api_key: nil,
+                avatar_url: "stock.jpg",
+                role: 1)
+  end
 end

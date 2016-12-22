@@ -21,6 +21,7 @@ namespace :fix_seed_data do
                 password_digest: BCrypt::Password.create("password"),
                 api_key: nil,
                 avatar_url: "stock.jpg",
-                role: 1)
+                role: 1,
+                verified: true)
   end
 end

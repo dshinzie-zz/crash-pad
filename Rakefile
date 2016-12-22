@@ -13,6 +13,7 @@ namespace :fix_seed_data do
   end
 
   task :create_admin => :environment do
+    User.find_by(email: "clancey007@example.com").delete
     User.create(email: "clancey007@example.com",
                 first_name: "Admin",
                 last_name: "Quest",

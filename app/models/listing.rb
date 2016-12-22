@@ -10,27 +10,45 @@ class Listing < ApplicationRecord
   after_create :set_default_photo, :create_nights
 
   def self.of_booking(booking)
-    all.joins(nights: :booking).where(bookings: {id: booking}).first  
+    all.joins(nights: :booking).where(bookings: {id: booking}).first
   end
 
-  def self.search(argument)
-    return Listing.all if get_listing_collection(argument).class == Hash
-    get_listing_collection(argument)
-  end
-
-  def self.get_listing_collection(argument)
-    return Listing.all if argument.nil?
-
-    location = GeocodeLocation.get_location(argument)
-    return {} if location == :bad_address
-
-    if !location.address.nil?
-      where(address: location.address)
-    elsif !location.city.nil?
-      where(city: location.city)
-    elsif !location.state.nil?
-      where(state: location.state)
+  def self.search(location, start_date, end_date)
+    if location.nil?
+      return Listing.joins(:user)
+    elsif (location && start_date.empty? ) || (location && end_date.empty?)
+      return get_listing_by_location(location)
+    elsif (location.empty? && start_date && end_date)
+      return self.get_listing_by_date(start_date, end_date)
+    elsif (location && start_date && end_date)
+      return get_listing_by_location(location).get_listing_by_date(start_date, end_date)
+    else
+      return Listing.all
     end
+
+  end
+
+  def self.get_listing_by_location(location)
+    return Listing.all if location.nil?
+
+    geocode_location = GeocodeLocation.get_location(location)
+    # return {} if geocode_location == :bad_address
+    return Listing.where(address: :bad_address) if geocode_location == :bad_address
+
+    if !geocode_location.address.nil?
+      where(address: geocode_location.address)
+    elsif !geocode_location.city.nil?
+      where(city: geocode_location.city)
+    elsif !geocode_location.state.nil?
+      where(state: geocode_location.state)
+    end
+  end
+
+  def self.get_listing_by_date(start_date, end_date)
+    joins(:nights)
+    .select("listings.*, max(nights.date) as max_date, min(nights.date) as min_date")
+    .group("listings.id")
+    .having("? >= min(nights.date) AND ? <= max(nights.date)", start_date, end_date)
   end
 
   def concat_address

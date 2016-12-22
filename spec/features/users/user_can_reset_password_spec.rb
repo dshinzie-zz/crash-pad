@@ -22,13 +22,13 @@ describe 'As a user' do
       visit verify_path(user)
       click_on "Verify Token"
 
-      expect(current_path).to eq(user_path(user))
+      expect(current_path).to eq(show_user_path(user.slug))
       expect(page).to have_content("Verified")
     end
     it "resets my password" do
 
       user.update(verified: true)
-      
+
       allow_any_instance_of(Authy::Response).to receive(:ok?).and_return(true)
       allow(TwilioSender).to receive(:send_message).and_return(true)
 

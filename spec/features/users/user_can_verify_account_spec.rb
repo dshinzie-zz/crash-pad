@@ -14,7 +14,7 @@ describe "As a user" do
   end
 
   context "I can verify an unverified account" do
-    xit "verifies the account" do
+    it "verifies the account" do
       stub_login_user
 
       allow_any_instance_of(Authy::Response).to receive(:ok?).and_return(true)
@@ -23,7 +23,7 @@ describe "As a user" do
       visit verify_path(User.first)
       click_on "Verify Token"
 
-      expect(current_path).to eq(user_path(User.first))
+      expect(current_path).to eq(show_user_path(User.first.slug))
       expect(page).to have_content("Verified")
     end
   end

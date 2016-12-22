@@ -11,6 +11,7 @@ describe "as a not logged in user" do
 
     context "when I search by city" do
       it "should return all listings within that city" do
+
         visit root_path
 
         fill_in :q, with: "Denver"

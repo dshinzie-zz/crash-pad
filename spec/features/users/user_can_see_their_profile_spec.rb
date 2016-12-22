@@ -7,9 +7,9 @@ describe 'As a logged in user' do
 
       user.update(verified: true)
 
-      visit user_path(user)
+      visit show_user_path(user.slug)
 
-      expect(page).to have_content(user.verified)
+      expect(page).to have_content("Verified")
       expect(page).to have_content(user.email)
       expect(page).to have_content(user.first_name)
       expect(page).to have_content(user.last_name)

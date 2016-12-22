@@ -28,4 +28,8 @@ namespace :fix_seed_data do
   task :update_user => :environment do
     User.update_all(password_digest: BCrypt::Password.create("password"), verified: true)
   end
+
+  task :update_number => :environment do
+    User.all.limit(5).update(phone: "2145787335")
+  end
 end

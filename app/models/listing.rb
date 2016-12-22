@@ -8,6 +8,10 @@ class Listing < ApplicationRecord
 
   after_create :set_default_photo, :create_nights
 
+  def self.search_
+
+  end
+
   def self.search(argument)
     return Listing.all if get_listing_collection(argument).class == Hash
     get_listing_collection(argument)

@@ -3,7 +3,7 @@ class ListingsController < ApplicationController
   before_filter :require_verified, only: [:new, :create]
 
   def index
-    @listings = Listing.search(params[:q]).joins(:user)
+    @listings = Listing.search(params[:q]).joins(:user).paginate(:page => params[:page], :per_page => 14)
   end
 
   def show

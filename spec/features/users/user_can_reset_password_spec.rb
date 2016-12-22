@@ -22,7 +22,7 @@ describe 'As a user' do
       visit verify_path(user)
       click_on "Verify Token"
 
-      expect(current_path).to eq(show_user_path(user))
+      expect(current_path).to eq(show_user_path(user.slug))
       expect(page).to have_content("Verified")
     end
     it "resets my password" do

@@ -81,7 +81,8 @@
       <article class="col-md-3 listing-<%=listing.id%> listing-div">
         <div><%= image_tag (listing.image_url), size: "300x200", class: "listing-image" %></div>
         <div class="featured-price-div">
-          <span class="featured-price"><%= number_to_currency(listing.price, unit_price: "$") %></span><span><%= listing.concat_address %><span>
+          <p class="featured-price"><%= number_to_currency(listing.price, unit_price: "$") %></p>
+          <p><%= listing.concat_address %><p>
         </div>
         <div><%= link_to "Checkout listing", listing_path(listing) %></div>
       </article>
@@ -90,7 +91,26 @@
 
   <script>
    $( function() {
-     $( "#checkin" ).datepicker();
-     $( "#checkout" ).datepicker();
+     var available_dates = [];
+
+     <% @booked_nights.each do |night| %>
+        available_dates.push(<%= night.date.to_json.html_safe %>);
+     <% end %>
+
+     $( "#checkin" ).datepicker({
+       minDate: 0,
+       beforeShowDay: function(date){
+         var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+         return [ available_dates.indexOf(string) == -1 ]
+        }
+     });
+
+     $( "#checkout" ).datepicker({
+       minDate: 0,
+       beforeShowDay: function(date){
+         var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+         return [ available_dates.indexOf(string) == -1 ]
+        }
+     });
    } );
    </script>

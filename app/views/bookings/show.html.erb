@@ -1,4 +1,30 @@
-<h1> Your Booking </h1>
+<h2 class="text-center">Review Your Trip to <%= @listing.city %></h2>
 
-<%= @booking.start_date.strftime("%d/%m/%Y") %>
-<%= @booking.end_date.strftime("%d/%m/%Y") %>
+<h3 class="text-center">
+  <%= link_to "Go to Dashboard", dashboard_path %>
+</h3>
+
+
+<div class="col-md-6">
+  <img src="<%=@listing.image_url%>" class="img-thumbnail" alt="Cinque Terre" width="100%" height="100%"></img>
+</div>
+
+<div class="col-md-6">
+  <div class="panel-group" id="booking-dates">
+    <div class="panel panel-default">
+      <div class="panel-body">Dates</div>
+      <div class="panel-footer"><%= @booking.start_date.strftime("%d/%m/%Y") %> - <%= @booking.end_date.strftime("%d/%m/%Y") %></div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-body">Credit Card</div>
+      <div class="panel-footer">**** **** **** <%= @booking.credit_card_number[-4..-1] %> </div>
+    </div>
+  </div>
+</div>
+
+
+<style>
+#booking-dates {
+  margin-top: 2%;
+}
+</style>

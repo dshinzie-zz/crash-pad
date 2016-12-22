@@ -19,28 +19,13 @@
         <div class="overview-container">
 
           <div class="chat">
-            <div class="head">Your Listings</div>
+            <div class="head">Bookings</div>
             <div class="chat_inner">
+              <% @bookings.each do |booking| %>
               <div class="chat_inner-item">
-                <div class="message">
-                <% if current_user.listings.nil? %>
-                  <p>You have no listings</p>
-                <% else %>
-                <% current_user.listings.each do |listing| %>
-                  <p><%= link_to listing.address, listing_path(listing) %></p>
-                  <% end %>
-                <% end %>
-                </div>
+                <a class="message" href="/users/<%=current_user.id%>/bookings/<%=booking.id%>"><%= booking.start_date.strftime("%d/%m/%Y") %> to <%= booking.end_date.strftime("%d/%m/%Y") %> </a>
               </div>
-            </div>
-          </div>
-
-          <div class="chat">
-            <div class="head">Past Bookings</div>
-            <div class="chat_inner">
-              <div class="chat_inner-item">
-                <div class="message">You have not booked anything.</div>
-              </div>
+              <% end %>
             </div>
           </div>
 
@@ -49,3 +34,11 @@
     </div>
   </div>
 </div>
+
+<style>
+.message:hover {
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 25px #53a7ea;
+}
+</style>

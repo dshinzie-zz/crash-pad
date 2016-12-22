@@ -42,6 +42,7 @@ class Listing < ApplicationRecord
       where(city: geocode_location.city)
     elsif !geocode_location.state.nil?
       where(state: geocode_location.state)
+
     end
   end
 

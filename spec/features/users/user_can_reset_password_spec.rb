@@ -5,7 +5,7 @@ describe 'As a user' do
   let!(:new_password) { "TestPass" }
 
   context 'I can reset my password' do
-    it 'takes me to the verify page' do
+    it 'takes me to the verify page'
 
       user.update(verified: true)
 
@@ -15,7 +15,8 @@ describe 'As a user' do
 
       expect(current_path).to eq(verify_path)
     end
-    it "takes me to a verify page to enter a code" do
+
+    it "takes me to a verify page to enter a code", :vcr do
       allow_any_instance_of(Authy::Response).to receive(:ok?).and_return(true)
       allow(TwilioSender).to receive(:send_message).and_return(true)
 
@@ -25,8 +26,8 @@ describe 'As a user' do
       expect(current_path).to eq(show_user_path(user.slug))
       expect(page).to have_content("Verified")
     end
-    it "resets my password" do
 
+    it "resets my password", :vcr do
       user.update(verified: true)
 
       allow_any_instance_of(Authy::Response).to receive(:ok?).and_return(true)

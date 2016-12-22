@@ -446,7 +446,7 @@ body {
 .map-position {
   position: fixed;
   right: 0%;
-  width: 70vh;
+  width: 40%;
 	height: 100%;
   bottom: 0%;
 
@@ -558,7 +558,6 @@ $darkblue: #2C3E50;
     }
   }
 }
-<<<<<<< HEAD
 
 .paginate {
   padding-left: -50%;
@@ -566,9 +565,9 @@ $darkblue: #2C3E50;
 
 .featured-price-div {
   font-size: 16px;
-=======
-#filter-block{
+}
+
+#filter-block {
   width: 100px;
   display: inline-block;
->>>>>>> development
 }

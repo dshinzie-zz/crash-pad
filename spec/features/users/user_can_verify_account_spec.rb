@@ -3,7 +3,7 @@ require 'rails_helper'
 describe "As a user" do
   let(:user) { create(:user, verified: true) }
   context "I can see whether my account is verified" do
-    it "shows the user information" do
+    it "shows the user information", :vcr do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
       visit show_user_path(user.slug)
@@ -14,7 +14,7 @@ describe "As a user" do
   end
 
   context "I can verify an unverified account" do
-    it "verifies the account" do
+    it "verifies the account", :vcr do
       stub_login_user
 
       allow_any_instance_of(Authy::Response).to receive(:ok?).and_return(true)
@@ -29,7 +29,7 @@ describe "As a user" do
   end
 
   context "I can't use a bad code" do
-    it "displays a flash message" do
+    it "displays a flash message", :vcr do
       stub_login_user
 
       visit verify_path(User.first)
@@ -42,7 +42,7 @@ describe "As a user" do
   end
 
   context "I can resend a code" do
-    it "resends a verification code" do
+    it "resends a verification code", :vcr do
       stub_login_user
 
       visit verify_path(User.first)

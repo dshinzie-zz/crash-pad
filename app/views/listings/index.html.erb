@@ -18,7 +18,7 @@
         <% @listings.each do |listing| %>
         <article class="col-md-6 listing-<%=listing.id%> listing-image">
           <div><%= image_tag (listing.image_url), size: "380x230" , class: "img-responsive" %></div>
-          <div class="featured-price-div">
+          <div class="featured-price-div" id="<%= listing.price %>">
             <p class="featured-price"><%= number_to_currency(listing.price, unit_price: "$") %></p>
             <p><%= listing.concat_address %><p>
           </div>

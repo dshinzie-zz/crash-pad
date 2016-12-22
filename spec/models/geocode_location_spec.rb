@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe "GeocodeLocation" do
   context ".get_location(address)" do
-    it "returns location information of address" do
+    it "returns location information of address", :vcr do
       address = "1510 Blake St Denver CO"
       location = GeocodeLocation.get_location(address)
 

@@ -10,7 +10,7 @@ describe "as a not logged in user" do
     let!(:turing) { create(:listing, state: "CO", city: "Denver", address: "1510 Blake St")}
 
     context "when I search by city" do
-      it "should return all listings within that city" do
+      it "should return all listings within that city", :vcr do
         visit root_path
 
         fill_in :q, with: "Denver"
@@ -25,7 +25,7 @@ describe "as a not logged in user" do
     end
 
     context "when I search by state" do
-      it "should return all listings within that state" do
+      it "should return all listings within that state", :vcr do
         visit root_path
 
         fill_in :q, with: "Texas"
@@ -39,7 +39,7 @@ describe "as a not logged in user" do
     end
 
     context "when I search by address" do
-      it "should return the listing with that address" do
+      it "should return the listing with that address", :vcr do
         visit root_path
 
         fill_in :q, with: "1510 Blake St"
@@ -55,7 +55,7 @@ describe "as a not logged in user" do
   end
 
   context "when I enter a criteria with no listings and click Search" do
-    it "should return a message indicating no results" do
+    it "should return a message indicating no results", :vcr do
       visit root_path
 
       fill_in :q, with: "testestest"

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'As a verified user creating a listing' do
   context 'when I enter start and end dates' do
-    xit "creates nights for my listing" do
+    it "creates nights for my listing" do
       user = stub_login_user
 
       user.update(verified: true)

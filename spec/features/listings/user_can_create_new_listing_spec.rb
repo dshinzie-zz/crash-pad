@@ -3,7 +3,7 @@ require 'rails_helper'
 describe "As a verified logged in user" do
   let!(:dates) { { start_date: '1/1/2017', end_date: '5/1/2017' } }
   context "When I create a valid lisiting" do
-    xit "stores lat and long" do
+    it "stores lat and long" do
       user = stub_login_user
 
       user.update(verified: true)
@@ -29,7 +29,7 @@ describe "As a verified logged in user" do
   end
 
   context "When I enter an invalid address" do
-    xit "does not save bad address to the database" do
+    it "does not save bad address to the database" do
       user = stub_login_user
 
       user.update(verified: true)
@@ -51,7 +51,7 @@ describe "As a verified logged in user" do
       expect(Listing.count).to eq(0)
     end
 
-    xit "does not save blank address to the database" do
+    it "does not save blank address to the database" do
       user = stub_login_user
 
       user.update(verified: true)

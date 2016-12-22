@@ -11,59 +11,67 @@ describe "as a not logged in user" do
 
     context "when I search by city" do
       it "should return all listings within that city" do
-        visit root_path
+        VCR.use_cassette(".by_city") do
+          visit root_path
 
-        fill_in :q, with: "Denver"
+          fill_in :q, with: "Denver"
 
-        click_button "Search"
+          click_button "Search"
 
-        expect(current_path).to eq(listings_path)
-        expect(page).to have_content(denver.first.city)
-        expect(page).to have_content(denver.last.city)
-        expect(page).to have_content(denver_iowa.city)
+          expect(current_path).to eq(listings_path)
+          expect(page).to have_content(denver.first.city)
+          expect(page).to have_content(denver.last.city)
+          expect(page).to have_content(denver_iowa.city)
+        end
       end
     end
 
     context "when I search by state" do
       it "should return all listings within that state" do
-        visit root_path
+        VCR.use_cassette(".by_state") do
+          visit root_path
 
-        fill_in :q, with: "Texas"
+          fill_in :q, with: "Texas"
 
-        click_button "Search"
+          click_button "Search"
 
-        expect(current_path).to eq(listings_path)
-        expect(page).to have_content(austin.city)
-        expect(page).to have_content(dallas.city)
+          expect(current_path).to eq(listings_path)
+          expect(page).to have_content(austin.city)
+          expect(page).to have_content(dallas.city)
+        end
       end
     end
 
     context "when I search by address" do
       it "should return the listing with that address" do
-        visit root_path
+        VCR.use_cassette(".by_address") do
+          visit root_path
 
-        fill_in :q, with: "1510 Blake St"
+          fill_in :q, with: "1510 Blake St"
 
-        click_button "Search"
+          click_button "Search"
 
-        expect(current_path).to eq(listings_path)
-        expect(page).to have_content(turing.city)
-        expect(page).to have_content(turing.state)
-        expect(page).to have_content(turing.address)
+          expect(current_path).to eq(listings_path)
+          expect(page).to have_content(turing.city)
+          expect(page).to have_content(turing.state)
+          expect(page).to have_content(turing.address)
+        end
       end
     end
   end
 
   context "when I enter a criteria with no listings and click Search" do
     it "should return a message indicating no results" do
-      visit root_path
+      VCR.use_cassette(".no_results") do
+        visit root_path
 
-      fill_in :q, with: "testestest"
+        fill_in :q, with: "testestest"
 
-      click_button "Search"
+        click_button "Search"
 
-      expect(current_path).to eq(listings_path)
-      expect(page).to have_content("No Available Listings")
+        expect(current_path).to eq(listings_path)
+        expect(page).to have_content("No Available Listings")
+      end
     end
   end
 end

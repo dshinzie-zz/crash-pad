@@ -6,6 +6,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'spec_helper'
 require 'rspec/rails'
 require 'capybara/rails'
+require 'capybara/rspec'
 require 'vcr'
 require 'support/factory_girl'
 
@@ -16,10 +17,10 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
-# VCR.configure do |config|
-#   config.cassette_library_dir = "spec/vcr_cassettes"
-#   config.hook_into :webmock
-# end
+VCR.configure do |config|
+  config.cassette_library_dir = "spec/vcr_cassettes"
+  config.hook_into :webmock
+end
 
 def stub_login_user
   user = User.create(email: "brad@test.com", password: "password", first_name: "Chase", last_name: "Dun", phone: "7273840", avatar_url: "http://www.aceshowbiz.com/images/photo/drake.jpg")
@@ -67,7 +68,7 @@ RSpec.configure do |config|
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and

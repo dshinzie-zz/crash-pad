@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-describe 'As a logged in user' do
+describe 'As a verified logged in user' do
   let!(:listing) { create(:listing, start_date: "01/02/2017", end_date: "01/03/2017") }
-  let(:user) { create(:user) }
+  let(:user) { create(:user, verified: true) }
 
   context 'when I book a listing' do
     it "shows me a confirmation message" do

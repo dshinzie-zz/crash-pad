@@ -5,11 +5,12 @@ describe "As a logged in user" do
     it "shows me profile information" do
       user = stub_login_user
 
+      user.update(verified: true)
+
       visit root_path
       click_on "Dashboard"
-      
 
-      expect(current_path).to eq(dashboard_path(user))
+      expect(current_path).to eq(dashboard_path)
       expect(page).to have_content(user.first_name)
       expect(page).to have_css('img', user.avatar_url)
     end
@@ -21,6 +22,7 @@ describe "As a logged in user" do
 
       visit root_path
       click_on "Dashboard"
+      click_on "Show Profile"
       click_on "Edit Profile"
 
       expect(current_path).to eq(edit_user_path(user))
@@ -31,6 +33,7 @@ describe "As a logged in user" do
 
       visit root_path
       click_on "Dashboard"
+      click_on "Show Profile"
       click_on "Edit Profile"
 
       expect(current_path).to eq(edit_user_path(user))
@@ -60,6 +63,7 @@ describe "As a logged in user" do
 
       visit root_path
       click_on "Dashboard"
+      click_on "Show Profile"
       click_on "Edit Profile"
 
       expect(current_path).to eq(edit_user_path(user))

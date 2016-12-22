@@ -13,6 +13,7 @@
       <h2>About This Listing</h2>
       <p><%= @listing.description %></p>
       <p>Accomdation: <%= @listing.accomodation %></p>
+      <p>Availability: <%= @listing.start_date.strftime("%d/%m/%Y") %> to <%= @listing.end_date.strftime("%d/%m/%Y") %></p>
     </div>
   </div>
 
@@ -21,7 +22,7 @@
     <% if current_user %>
       <%= button_to "Request to Book", new_listing_booking_path(@listing, current_user), method: :get, class: "btn btn-primary" %>
     <% else %>
-      <%= button_to "Request to Book", method: :get, class: "btn btn-primary", disabled: true %>
+      <%= button_to "Request to Book", new_listing_booking_path(@listing, current_user), method: :get, class: "btn btn-primary", disabled: true %>
     <% end %>
   </div>
   <% if current_user %>

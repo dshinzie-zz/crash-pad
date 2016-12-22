@@ -5,10 +5,13 @@ class Listing < ApplicationRecord
   has_many :ratings, dependent: :destroy
   has_many :bookings, through: :nights
 
-
   validates :description, :price, :accomodation, :start_date, :end_date, presence: true
 
   after_create :set_default_photo, :create_nights
+
+  def self.of_booking(booking)
+    all.joins(nights: :booking).where(bookings: {id: booking}).first  
+  end
 
   def self.search(argument)
     return Listing.all if get_listing_collection(argument).class == Hash

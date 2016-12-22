@@ -12,13 +12,13 @@ describe 'As a verified logged in user' do
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-      visit dashboard_path(user)
+      visit dashboard_path
 
       click_on "My Bookings"
-
+      
       expect(current_path).to eq(user_bookings_path(user))
-      expect(page).to have_content(booking.start_date)
-      expect(page).to have_content(booking.end_date)
+      expect(page).to have_content(booking.start_date.strftime("%d/%m/%Y"))
+      expect(page).to have_content(booking.end_date.strftime("%d/%m/%Y"))
     end
   end
 end

@@ -1,0 +1,42 @@
+<div class="wrapper">
+  <div class="wrapper_container">
+    <div class="row">
+      <div class="col-1">
+        <div class="user-item">
+          <div class="user-item_photo">
+            <%= image_tag(current_user.avatar_url) %>
+          </div>
+          <div class="user-item_info">
+            <p class="name"><%= current_user.first_name %> <%= current_user.last_name %></p>
+            <p class="sub"><%= current_user.email %></p>
+            <p class="sub"><%= current_user.phone %></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-2">
+        <div class="overview-container">
+
+          <div class="chat">
+            <div class="head">Bookings</div>
+            <div class="chat_inner">
+              <% @bookings.each do |booking| %>
+              <div class="chat_inner-item">
+                <a class="message" href="/users/<%=current_user.id%>/bookings/<%=booking.id%>"><%= booking.start_date.strftime("%d/%m/%Y") %> to <%= booking.end_date.strftime("%d/%m/%Y") %> </a>
+              </div>
+              <% end %>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.message:hover {
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 25px #53a7ea;
+}
+</style>

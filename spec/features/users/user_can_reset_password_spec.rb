@@ -7,6 +7,8 @@ describe 'As a user' do
   context 'I can reset my password' do
     it 'takes me to the verify page' do
 
+      user.update(verified: true)
+
       visit user_reset_password_path(user)
       fill_in :user_password, with: new_password
       click_on "Reset Password"
@@ -20,10 +22,13 @@ describe 'As a user' do
       visit verify_path(user)
       click_on "Verify Token"
 
-      expect(current_path).to eq(user_path(user))
+      expect(current_path).to eq(show_user_path(user))
       expect(page).to have_content("Verified")
     end
     it "resets my password" do
+
+      user.update(verified: true)
+
       allow_any_instance_of(Authy::Response).to receive(:ok?).and_return(true)
       allow(TwilioSender).to receive(:send_message).and_return(true)
 

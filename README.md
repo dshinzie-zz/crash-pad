@@ -10,18 +10,9 @@ CrashPAD is a AirBnB clone, written to demonstrate the complexities of building 
 * [Chase Dunagan](https://github.com/Cdunagan05)
 
 ## Installation
-1. Clone the repository: 
-```shell
-git clone https://github.com/dshinzie/crash-pad.git
-```
-2. Bundle Install:
-```shell
-bundle install
-```
-3. Install Figaro:
-```shell
-figaro install
-```
+1. Clone the repository: ```git clone https://github.com/dshinzie/crash-pad.git```
+2. Bundle Install: ```bundle install```
+3. Install Figaro: ```figaro install```
 4. Retrieve [Twilio/Authy](https://www.twilio.com/try-twilio/authy?g=%2Fconsole%2Fauthy%2Fgetting-started&t=3d00d16e4ff559b8732da59d6359b5d617e40831dbe44cc4fc3bb28880175c2f) and [Google Maps](https://developers.google.com/maps/) API keys
 5. Configure the `application.yml` file with:
       * AUTHY_KEY
@@ -30,10 +21,8 @@ figaro install
       * TWILIO_AUTH_TOKEN
       * TWILIO_NUMBER
       * GOOGLE_MAPS_API
-6. Start Rails server
-```shell
-rails s
-```
+6. Start Rails server: ```rails s```
+
 
 ## Testing
 Testing is done via RSpec/Capybara and can be triggered in the terminal with:

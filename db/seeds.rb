@@ -38,9 +38,9 @@ class Seed
 
   def random_date(type)
     if type == "start"
-      Time.now - (60 * 60 * 24 * rand(1..60))
+      Time.now - (60 * 60 * 24 * rand(1..20))
     else
-      Time.now + (60 * 60 * 24 * rand(1..60))
+      Time.now + (60 * 60 * 24 * rand(1..20))
     end
   end
 

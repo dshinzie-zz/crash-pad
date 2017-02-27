@@ -3,12 +3,6 @@ CrashPAD is a AirBnB clone, written to demonstrate the complexities of building 
 
 [Production](https://crash-pad.herokuapp.com/)
 
-## Authors
-* [Daniel Shin](https://github.com/dshinzie/)
-* [Michael Scherer](https://github.com/mscherer11/)
-* [Brad Green](https://github.com/bradgreen3)
-* [Chase Dunagan](https://github.com/Cdunagan05)
-
 ## Installation
 1. Clone the repository: ```git clone https://github.com/dshinzie/crash-pad.git```
 2. Bundle Install: ```bundle install```
@@ -29,6 +23,16 @@ Testing is done via RSpec/Capybara and can be triggered in the terminal with:
 ```shell
 rspec
 ```
+## Technology
+* Server: Ruby on Rails -> 5.0.1
+* Client-side: ERB/HTML, Vanilla JS
+* Database: PostgreSQL
+
+## Authors
+* [Daniel Shin](https://github.com/dshinzie/)
+* [Michael Scherer](https://github.com/mscherer11/)
+* [Brad Green](https://github.com/bradgreen3)
+* [Chase Dunagan](https://github.com/Cdunagan05)
 
 ## Reviews API
 * In order to use our reviews api, you will need an api_key.

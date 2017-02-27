@@ -39,25 +39,25 @@ rspec
 * With our reviews API, you can READ, CREATE, UPDATE, and DELETE your own reviews.
 
 ### Read Example for all of your reviews for a listing:
-* GET crash-pad.herokuapp.com/api/v1/listings/INSERT LISTING_ID_HERE/reviews.json?api_key="Your_api_key_here"
+* GET _crash-pad.herokuapp.com/api/v1/listings/INSERT LISTING_ID_HERE/reviews.json?api_key="Your_api_key_here"_
  - Required parameters: api_key
 
 ### Read Example for a single review:
-* GET crash-pad.herokuapp.com/api/v1/listings/INSERT LISTING_ID HERE/INSERT REVIEW_ID HERE.json?api_key="Your_api_key_here"
+* GET _crash-pad.herokuapp.com/api/v1/listings/INSERT LISTING_ID HERE/INSERT REVIEW_ID HERE.json?api_key="Your_api_key_here"_
       - Required parameters: api_key
 
 ### Create Example:
-* POST crash-pad.herokuapp.com/api/v1/listings/INSERT LISTING_ID_HERE/reviews.json?api_key="Your_api_key_here"&body="insert body of review here"&CONTENT_TYPE='application/json'&ACCEPT='application/json'
+* POST _crash-pad.herokuapp.com/api/v1/listings/INSERT LISTING_ID_HERE/reviews.json?api_key="Your_api_key_here"&body="insert_ body of review here"&CONTENT_TYPE='application/json'&ACCEPT='application/json'
       - Required parameters: api_key, body(body of your review as a string),
                              CONTENT_TYPE = 'application/json'
                              ACCEPT = 'application/json'
 
 ### Update Example:
-* PATCH crash-pad.herokuapp.com/api/v1/listings/INSERT LISTING_ID HERE/INSERT REVIEW_ID HERE.json?api_key="Your_api_key_here"&body="insert body of review here"&CONTENT_TYPE='application/json'&ACCEPT='application/json'
+* PATCH _crash-pad.herokuapp.com/api/v1/listings/INSERT LISTING_ID HERE/INSERT REVIEW_ID HERE.json?api_key="Your_api_key_here"&body="insert body of review here"&CONTENT_TYPE='application/json'&ACCEPT='application/json'_
       - Required parameters: api_key, body(body of your review as a string),
                              CONTENT_TYPE = 'application/json'
                              ACCEPT = 'application/json'
 
 ### Delete Example:
-* DELETE crash-pad.herokuapp.com/api/v1/listings/INSERT LISTING_ID HERE/INSERT REVIEW_ID HERE.json?api_key="Your_api_key_here"
+* DELETE _crash-pad.herokuapp.com/api/v1/listings/INSERT LISTING_ID HERE/INSERT REVIEW_ID HERE.json?api_key="Your_api_key_here"_
       - Required parameters: api_key
